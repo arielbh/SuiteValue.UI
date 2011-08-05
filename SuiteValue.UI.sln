@@ -1,0 +1,65 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{28580D19-D682-4537-9F4F-905C3C788867}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{762BCFC2-643C-4889-B6A5-5AF0CC0969D0}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WP7", "WP7", "{61024129-4468-4B29-B285-447E895EFC80}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeLight.Mvvm.Desktop", "Desktop\CodeLight.Mvvm.Desktop\CodeLight.Mvvm.Desktop.csproj", "{A441E0B5-2276-4A49-A60B-0532F32A4361}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rdParty", "3rdParty", "{11D6DF4E-732A-4F5B-B40F-46E3A4F9C386}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{AC1D443E-003A-47C1-81B5-876BAF1821BC}"
+	ProjectSection(SolutionItems) = preProject
+		3rdParty\Desktop\System.Windows.Interactivity.dll = 3rdParty\Desktop\System.Windows.Interactivity.dll
+	EndProjectSection
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeLight.Mvvm.Silverlight", "Silverlight\CodeLight.Mvvm.Silverlight\CodeLight.Mvvm.Silverlight.csproj", "{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{82793A00-44A0-433F-ABBB-5B98E7B34FA7}"
+	ProjectSection(SolutionItems) = preProject
+		3rdParty\Silverlight\System.Windows.Interactivity.dll = 3rdParty\Silverlight\System.Windows.Interactivity.dll
+		3rdParty\Silverlight\System.Windows.Interactivity.xml = 3rdParty\Silverlight\System.Windows.Interactivity.xml
+	EndProjectSection
+EndProject
+Global
+	GlobalSection(TeamFoundationVersionControl) = preSolution
+		SccNumberOfProjects = 3
+		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
+		SccTeamFoundationServer = https://tfs.codevalue.net:8088/tfs/defaultcollection
+		SccLocalPath0 = .
+		SccProjectUniqueName1 = Desktop\\CodeLight.Mvvm.Desktop\\CodeLight.Mvvm.Desktop.csproj
+		SccProjectTopLevelParentUniqueName1 = SuiteValue.UI.sln
+		SccProjectName1 = Desktop/CodeLight.Mvvm.Desktop
+		SccLocalPath1 = Desktop\\CodeLight.Mvvm.Desktop
+		SccProjectUniqueName2 = Silverlight\\CodeLight.Mvvm.Silverlight\\CodeLight.Mvvm.Silverlight.csproj
+		SccProjectTopLevelParentUniqueName2 = SuiteValue.UI.sln
+		SccProjectName2 = Silverlight/CodeLight.Mvvm.Silverlight
+		SccLocalPath2 = Silverlight\\CodeLight.Mvvm.Silverlight
+	EndGlobalSection
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{A441E0B5-2276-4A49-A60B-0532F32A4361}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A441E0B5-2276-4A49-A60B-0532F32A4361}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A441E0B5-2276-4A49-A60B-0532F32A4361}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A441E0B5-2276-4A49-A60B-0532F32A4361}.Release|Any CPU.Build.0 = Release|Any CPU
+		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{A441E0B5-2276-4A49-A60B-0532F32A4361} = {28580D19-D682-4537-9F4F-905C3C788867}
+		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF} = {762BCFC2-643C-4889-B6A5-5AF0CC0969D0}
+		{AC1D443E-003A-47C1-81B5-876BAF1821BC} = {11D6DF4E-732A-4F5B-B40F-46E3A4F9C386}
+		{82793A00-44A0-433F-ABBB-5B98E7B34FA7} = {11D6DF4E-732A-4F5B-B40F-46E3A4F9C386}
+	EndGlobalSection
+EndGlobal
