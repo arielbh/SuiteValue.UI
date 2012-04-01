@@ -16,7 +16,7 @@ namespace CodeValue.CodeLight.Mvvm
             }
         }
 
-        private static string GetPropertyNameFromExpression<T>(Expression<Func<T>> property)
+        protected static string GetPropertyNameFromExpression<T>(Expression<Func<T>> property)
         {
             var lambda = (LambdaExpression)property;
             MemberExpression memberExpression;

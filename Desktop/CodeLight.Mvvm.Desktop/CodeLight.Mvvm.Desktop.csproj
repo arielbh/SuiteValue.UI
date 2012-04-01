@@ -39,6 +39,7 @@
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Data" />
     <Reference Include="System.Windows.Interactivity, Version=4.0.0.0, Culture=neutral, PublicKeyToken=31bf3856ad364e35, processorArchitecture=MSIL">
       <HintPath>..\..\3rdParty\Desktop\System.Windows.Interactivity.dll</HintPath>
@@ -57,7 +58,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Behaviors\BindableSelectedItemBehavior.cs" />
+    <Compile Include="Behaviors\NumbersOnlyBehavior.cs" />
+    <Compile Include="Behaviors\CommandVisibilityBehavior.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Behaviors\Style\StylizedBehaviors.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="Behaviors\TextBoxCarretPositionBehavior.cs" />
+    <Compile Include="Converters\AddEmptyItemConverter.cs" />
     <Compile Include="EventToCommand.cs" />
     <Compile Include="NotifyObject.cs" />
     <Compile Include="Properties\AssemblyInfo.cs">
@@ -73,7 +82,19 @@
       <DependentUpon>Settings.settings</DependentUpon>
       <DesignTimeSharedInput>True</DesignTimeSharedInput>
     </Compile>
+    <Compile Include="ResourceHelper.cs" />
+    <Compile Include="SelfTracking\SelfTrackingObject.cs" />
     <Compile Include="StateManager.cs" />
+    <Compile Include="Validation\RequiredRule.cs" />
+    <Compile Include="Validation\Rule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\SimpleRule.cs">
+      <SubType>Code</SubType>
+    </Compile>
+    <Compile Include="Validation\ValidatingObject.cs">
+      <SubType>Code</SubType>
+    </Compile>
     <Compile Include="ViewModelBase.cs" />
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>
