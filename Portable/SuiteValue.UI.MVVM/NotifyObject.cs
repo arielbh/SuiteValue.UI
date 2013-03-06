@@ -3,10 +3,10 @@ using System.Linq.Expressions;
 using System.ComponentModel;
 using System.Runtime.Serialization;
 
-namespace CodeValue.CodeLight.Mvvm
+namespace SuiteValue.UI.MVVM
 {
     [DataContract]
-    public  class NotifyObject : INotifyPropertyChanged, INotifyPropertyChanging
+    public class NotifyObject : INotifyPropertyChanged, INotifyPropertyChanging
     {
         public event PropertyChangedEventHandler PropertyChanged;
 

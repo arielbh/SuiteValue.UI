@@ -71,7 +71,7 @@ namespace CodeValue.CodeLight.Prism.Localization
         /// 
         /// {Binding Source={StaticResource local}, Path=Values[KEY]
         /// </summary>
-        public Dictionary<string, string> Values { get; private set; }
+        public Dictionary<string, string> Values { get { return _resourceManager.Managers[_managerName]; } }
 #else
         /// <summary>
         /// Gets a resource string from the ResourceManager
@@ -106,7 +106,7 @@ namespace CodeValue.CodeLight.Prism.Localization
                 _managerName = value;
                 if (!_isInDesignMode)
                 {
-                    Values = _resourceManager.Managers[_managerName];
+                    //Values = _resourceManager.Managers[_managerName];
                 }
             }
         }
