@@ -6,6 +6,7 @@ using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
+using Microsoft.Phone.Shell;
 
 namespace SuiteValue.UI.WP8
 {
@@ -70,6 +71,15 @@ namespace SuiteValue.UI.WP8
 
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
+            if (NavigationContext.QueryString != null && ViewModel == null)
+            {
+                if (NavigationContext.QueryString.ContainsKey("ViewModelId"))
+                {
+                    var id = NavigationContext.QueryString["ViewModelId"];
+                    ViewModel = PhoneApplicationService.Current.State[id] as NavigationViewModelBase;
+                }
+            }
+            
             if (ViewModel != null)
             {
                 (ViewModel as INavigationViewModel).OnNavigatedTo(e.NavigationMode, NavigationContext.QueryString);

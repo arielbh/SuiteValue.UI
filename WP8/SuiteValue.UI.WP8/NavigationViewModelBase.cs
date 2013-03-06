@@ -1,11 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Windows.Navigation;
+using Microsoft.Phone.Shell;
 
 namespace SuiteValue.UI.WP8
 {
     public class NavigationViewModelBase : CommandableViewModelBase, INavigationViewModel
     {
+        private string _viewHint;
         public event EventHandler<NavigationEventArgs> RequestNavigateTo;
         public event EventHandler<EventArgs> RequestNavigateBack;
 
@@ -37,6 +39,34 @@ namespace SuiteValue.UI.WP8
                 RequestNavigateTo(this, new NavigationEventArgs(viewUri, parameters));
             }
         }
+
+        protected virtual void Navigate<T>(T viewModel, IDictionary<string, string> parameters = null) where T : NavigationViewModelBase
+        {
+            if (parameters == null)
+            {
+                parameters = new Dictionary<string, string>();
+            }
+            var uniqueKey = Guid.NewGuid().ToString();
+            parameters["ViewModelId"] = uniqueKey;
+            PhoneApplicationService.Current.State[uniqueKey] = viewModel;
+            
+            Navigate(viewModel.ViewHint, parameters);
+        }
+
+        protected virtual string DeriveViewNameByConvention()
+        {
+            return GetType().Name.Replace("Model", "") + ".xaml";
+        }
+        protected virtual string DecideViewHint()
+        {
+            return "/Views/" + DeriveViewNameByConvention();
+        }
+
+        protected string ViewHint
+        {
+            get { return _viewHint ?? (_viewHint = DecideViewHint()); }
+        }
+
 
         protected virtual void NavigateBack()
         {
