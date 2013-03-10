@@ -5,7 +5,7 @@ using Microsoft.Phone.Shell;
 
 namespace SuiteValue.UI.WP8
 {
-    public class NavigationViewModelBase : CommandableViewModelBase, INavigationViewModel
+    public class NavigationViewModelBase : CommandableViewModelBase, INavigationViewModel, INavigator
     {
         private string _viewHint;
         public event EventHandler<NavigationEventArgs> RequestNavigateTo;
@@ -24,7 +24,7 @@ namespace SuiteValue.UI.WP8
 
         protected virtual void OnNavigatedFrom(NavigationMode mode)
         {
-            
+
         }
 
         protected virtual bool OnBackKeyPress()
@@ -40,7 +40,8 @@ namespace SuiteValue.UI.WP8
             }
         }
 
-        protected virtual void Navigate<T>(T viewModel, IDictionary<string, string> parameters = null) where T : NavigationViewModelBase
+        protected virtual void Navigate<T>(T viewModel, IDictionary<string, string> parameters = null)
+            where T : NavigationViewModelBase
         {
             if (parameters == null)
             {
@@ -49,7 +50,7 @@ namespace SuiteValue.UI.WP8
             var uniqueKey = Guid.NewGuid().ToString();
             parameters["ViewModelId"] = uniqueKey;
             PhoneApplicationService.Current.State[uniqueKey] = viewModel;
-            
+
             Navigate(viewModel.ViewHint, parameters);
         }
 
@@ -57,6 +58,7 @@ namespace SuiteValue.UI.WP8
         {
             return GetType().Name.Replace("Model", "") + ".xaml";
         }
+
         protected virtual string DecideViewHint()
         {
             return "/Views/" + DeriveViewNameByConvention();
@@ -95,6 +97,16 @@ namespace SuiteValue.UI.WP8
         bool INavigationViewModel.OnBackKeyPress()
         {
             return OnBackKeyPress();
+        }
+
+        void INavigator.Navigate(string viewUri, IDictionary<string, string> parameters)
+        {
+            Navigate(viewUri, parameters);
+        }
+
+        void INavigator.Navigate<T>(T viewModel, IDictionary<string, string> parameters)
+        {
+            Navigate(viewModel, parameters);
         }
     }
 }
