@@ -6,7 +6,7 @@ using Windows.Networking.Connectivity;
 
 namespace SuiteValue.UI.WP8
 {
-    public class AsyncViewModelBase : ViewModelBase
+    public class AsyncViewModelBase : AwareViewModelBase
     {
         private bool DoWeHaveInternetConnection(bool intranet)
         {

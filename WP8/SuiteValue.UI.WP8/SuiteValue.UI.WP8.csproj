@@ -106,6 +106,7 @@
       <Link>RelativeBinding\TypeLoader.cs</Link>
     </Compile>
     <Compile Include="AsyncViewModelBase.cs" />
+    <Compile Include="AwareViewModelBase.cs" />
     <Compile Include="Behaviors\CommandVisibilityBehavior.cs" />
     <Compile Include="Behaviors\LongListSelector.cs" />
     <Compile Include="Behaviors\WebBrowserSourceBehavior.cs" />
