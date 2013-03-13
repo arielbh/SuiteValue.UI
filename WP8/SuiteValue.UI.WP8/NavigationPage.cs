@@ -59,6 +59,7 @@ namespace SuiteValue.UI.WP8
                 {
                     builder.AppendFormat("{0}={1}&", HttpUtility.UrlEncode(pair.Key), HttpUtility.UrlEncode(pair.Value));
                 }
+
                 // the remove the trailing "&"
                 builder.Remove(builder.Length - 1, 1);
             }
@@ -66,7 +67,7 @@ namespace SuiteValue.UI.WP8
         }
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
         {
-            if (NavigationContext.QueryString != null && ViewModel == null)
+            if (NavigationContext.QueryString != null)
             {
                 if (NavigationContext.QueryString.ContainsKey("ViewModelId"))
                 {
