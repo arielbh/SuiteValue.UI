@@ -72,8 +72,12 @@ namespace SuiteValue.UI.WP8
                 if (NavigationContext.QueryString.ContainsKey("ViewModelId"))
                 {
                     var id = NavigationContext.QueryString["ViewModelId"];
-                    ViewModel = PhoneApplicationService.Current.State[id] as NavigationViewModelBase;
-                    PhoneApplicationService.Current.State.Remove(id);
+                    if (PhoneApplicationService.Current.State.ContainsKey(id))
+                    {
+
+                        ViewModel = PhoneApplicationService.Current.State[id] as NavigationViewModelBase;
+                        PhoneApplicationService.Current.State.Remove(id);
+                    }
                 }
             }
             if (ViewModel != null)
