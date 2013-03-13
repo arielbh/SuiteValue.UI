@@ -10,7 +10,7 @@ namespace SuiteValue.UI.WP8
         event EventHandler<EventArgs> RequestNavigateBack;
         bool RegisteredForNavigation { get; set; }
 
-        void OnNavigatedTo(NavigationMode mode, IDictionary<string,string> parameter);
+        void OnNavigatedTo(NavigationMode mode, IDictionary<string, string> parameter, bool isNavigationInitiator);
         bool OnNavigatingFrom(NavigationMode mode);
         void OnNavigatedFrom(NavigationMode mode);
         bool OnBackKeyPress();

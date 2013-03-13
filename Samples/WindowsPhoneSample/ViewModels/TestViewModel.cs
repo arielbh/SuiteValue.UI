@@ -1,4 +1,6 @@
-﻿using SuiteValue.UI.MVVM;
+﻿using System.Collections.Generic;
+using System.Windows.Navigation;
+using SuiteValue.UI.MVVM;
 using SuiteValue.UI.WP8;
 
 namespace WindowsPhoneSample.ViewModels
@@ -6,9 +8,9 @@ namespace WindowsPhoneSample.ViewModels
     public class TestViewModel : NavigationViewModelBase
     {
 
-        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationMode mode, System.Collections.Generic.IDictionary<string, string> parameter)
+        protected override void OnNavigatedTo(NavigationMode mode, IDictionary<string, string> parameter, bool isNavigationInitiator)
         {
-            base.OnNavigatedTo(mode, parameter);
+            base.OnNavigatedTo(mode, parameter, isNavigationInitiator);
             State = "Test1: Navigated";
         }
         private string _state;

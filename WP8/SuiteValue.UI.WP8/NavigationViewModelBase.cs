@@ -13,7 +13,7 @@ namespace SuiteValue.UI.WP8
 
         public bool RegisteredForNavigation { get; set; }
 
-        protected virtual void OnNavigatedTo(NavigationMode mode, IDictionary<string, string> parameter)
+        protected virtual void OnNavigatedTo(NavigationMode mode, IDictionary<string, string> parameter, bool isNavigationInitiator)
         {
         }
 
@@ -79,9 +79,9 @@ namespace SuiteValue.UI.WP8
         }
 
 
-        void INavigationViewModel.OnNavigatedTo(NavigationMode mode, IDictionary<string, string> parameter)
+        void INavigationViewModel.OnNavigatedTo(NavigationMode mode, IDictionary<string, string> parameter, bool isNavigationInitiator)
         {
-            OnNavigatedTo(mode, parameter);
+            OnNavigatedTo(mode, parameter, isNavigationInitiator);
         }
 
         bool INavigationViewModel.OnNavigatingFrom(NavigationMode mode)

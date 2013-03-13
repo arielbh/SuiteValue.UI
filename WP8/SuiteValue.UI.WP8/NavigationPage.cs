@@ -82,7 +82,7 @@ namespace SuiteValue.UI.WP8
             }
             if (ViewModel != null)
             {
-                (ViewModel as INavigationViewModel).OnNavigatedTo(e.NavigationMode, NavigationContext.QueryString);
+                (ViewModel as INavigationViewModel).OnNavigatedTo(e.NavigationMode, NavigationContext.QueryString, e.IsNavigationInitiator);
             }
             base.OnNavigatedTo(e);
         }
@@ -95,7 +95,7 @@ namespace SuiteValue.UI.WP8
             base.OnNavigatingFrom(e);
         }
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)
-        {
+        {                            
             if (ViewModel != null)
             {
                 (ViewModel as INavigationViewModel).OnNavigatedFrom(e.NavigationMode);
