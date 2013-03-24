@@ -1,6 +1,11 @@
 ﻿using System;
+using System.Linq;
+using System.Collections;
+using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Input;
+using Microsoft.Phone.Shell;
 
 namespace SuiteValue.UI.WP8.Controls
 {
@@ -8,7 +13,8 @@ namespace SuiteValue.UI.WP8.Controls
     {
         #region Fields
 
-        private readonly Microsoft.Phone.Shell.IApplicationBarMenuItem _sysAppBarMenuItem;
+        private readonly Microsoft.Phone.Shell.IApplicationBarMenuItem _appBarMenuItem;
+        private Microsoft.Phone.Shell.IApplicationBar _appBar;
         private bool _isAttached;        
 
         #endregion
@@ -17,28 +23,72 @@ namespace SuiteValue.UI.WP8.Controls
 
         public ApplicationBarMenuItem()
         {
-            _sysAppBarMenuItem = CreateApplicationBarMenuItem();
-            _sysAppBarMenuItem.Click += sysAppBarMenuItem_Click;
+            _appBarMenuItem = CreateApplicationBarMenuItem();
+            _appBarMenuItem.Click += sysAppBarMenuItem_Click;
+
+            InitialIndex = -1;
         }
 
         #endregion
 
         #region Properties
 
+        private int InitialIndex { get; set; }
+        private IEnumerable<ApplicationBarMenuItem> Items { get; set; }
+
+
         internal bool IsAttached
         {
             get { return _isAttached; }
         }
 
+        protected IApplicationBar AppBar
+        {
+            get { return _appBar; }
+            private set { _appBar = value; }
+        }
+
         protected Microsoft.Phone.Shell.IApplicationBarMenuItem SysAppBarMenuItem
         {
-            get { return _sysAppBarMenuItem; }
+            get { return _appBarMenuItem; }
         }
 
         #endregion
 
         #region Dependency Properties
 
+        #region IsVisible
+        public bool IsVisible
+        {
+            get { return (bool)GetValue(IsVisibleProperty); }
+            set { SetValue(IsVisibleProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for IsVisible.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty IsVisibleProperty =
+            DependencyProperty.Register(
+                "IsVisible",
+                typeof(bool),
+                typeof(ApplicationBarMenuItem),
+                new PropertyMetadata(true, (d, e) => ((ApplicationBarMenuItem)d).IsVisiblePropertyChanged((bool)e.NewValue)));
+
+        private void IsVisiblePropertyChanged(bool isVisible)
+        {
+            if (!_isAttached)
+                return;
+
+            if (isVisible)
+            {
+                AddItemToAppBarCore();
+            }
+            else
+            {
+                RemoveItemFromAppBarCore();
+            }
+        }
+
+        #endregion
+        
         #region IsEnabled
         public bool IsEnabled
         {
@@ -121,7 +171,7 @@ namespace SuiteValue.UI.WP8.Controls
         {
             get { return (object)GetValue(CommandParameterProperty); }
             set { SetValue(CommandParameterProperty, value); }
-        }
+        }        
 
         // Using a DependencyProperty as the backing store for CommandParameter.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty CommandParameterProperty =
@@ -139,25 +189,35 @@ namespace SuiteValue.UI.WP8.Controls
         #endregion
 
         #region Internals
-        internal void Attach(Microsoft.Phone.Shell.IApplicationBar sysAppBar)
+        internal void Attach(Microsoft.Phone.Shell.IApplicationBar appBar, int initialIndex, IEnumerable<ApplicationBarMenuItem> items)
         {
             if (!_isAttached)
             {
-                OnAttach(sysAppBar);
-                _isAttached = true;
-
+                AppBar = appBar;
+                InitialIndex = initialIndex;
+                Items = items;
+                AddItemToAppBarCore();
+                
                 if (Command != null)
                 {
                     IsEnabled = Command.CanExecute(CommandParameter);
                 }
+
+                _isAttached = true;
             }
         }
 
-        internal void Dettach(Microsoft.Phone.Shell.IApplicationBar sysAppBar)
+        internal void Dettach(Microsoft.Phone.Shell.IApplicationBar appBar)
         {
             if (_isAttached)
             {
-                OnDettach(sysAppBar);
+                IsEnabled = false;
+                RemoveItemFromAppBarCore();
+
+                InitialIndex = -1;
+                Items = null;
+                AppBar = null;
+
                 _isAttached = false;
             }
         }
@@ -166,8 +226,8 @@ namespace SuiteValue.UI.WP8.Controls
         #region Events
         public event EventHandler Click
         {
-            add { _sysAppBarMenuItem.Click += value; }
-            remove { _sysAppBarMenuItem.Click -= value; }
+            add { SysAppBarMenuItem.Click += value; }
+            remove { SysAppBarMenuItem.Click -= value; }
         }
         #endregion
 
@@ -195,16 +255,35 @@ namespace SuiteValue.UI.WP8.Controls
             return new Microsoft.Phone.Shell.ApplicationBarMenuItem();
         }
 
-        protected virtual void OnAttach(Microsoft.Phone.Shell.IApplicationBar sysAppBar)
+        protected virtual IList AppBarItemsCollection
         {
-            sysAppBar.MenuItems.Add(_sysAppBarMenuItem);
+            get { return AppBar.MenuItems; }
         }
 
-        protected virtual void OnDettach(Microsoft.Phone.Shell.IApplicationBar sysAppBar)
+        protected virtual void AddItemToAppBarCore()
         {
-            sysAppBar.MenuItems.Remove(_sysAppBarMenuItem);
+            if (!IsVisible)
+                return;
+
+            int index = 0;
+            foreach (var item in AppBarItemsCollection)
+            {
+                var wrapper = Items.First(x => x.SysAppBarMenuItem == item);
+                if (wrapper.InitialIndex > InitialIndex)
+                    break;
+
+                ++index;
+            }
+            
+            AppBarItemsCollection.Insert(index, SysAppBarMenuItem);
         }
 
-        #endregion                      
+        protected virtual void RemoveItemFromAppBarCore()
+        {
+            if (AppBarItemsCollection.Contains(SysAppBarMenuItem))
+                AppBarItemsCollection.Remove(SysAppBarMenuItem);
+        }
+
+        #endregion
     }
 }

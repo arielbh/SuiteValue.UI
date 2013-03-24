@@ -1,4 +1,6 @@
 ﻿using System.Collections.Generic;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows.Navigation;
 using SuiteValue.UI.MVVM;
 using SuiteValue.UI.WP8;
@@ -44,8 +46,86 @@ namespace WindowsPhoneSample.ViewModels
             }
         }
             
-       
+        private DelegateCommand _testAsyncCommand;
 
+        public DelegateCommand TestAsyncCommand
+        {
+            get
+            {
+                return _testAsyncCommand ?? (_testAsyncCommand = new DelegateCommand(
+                                                     async () =>
+                                                     {
+                                                         IsInAsync = true;
+                                                         AsyncMessage = "Doing important stuff...";
+                                                         var result = await Calculate();
+                                                         IsInAsync = false;
+
+
+                                                     }));
+            }
+        }
+
+        private Task<bool> Calculate()
+        {
+            TaskCompletionSource<bool> source = new TaskCompletionSource<bool>();
+
+
+            Task.Run(() =>
+            {
+                Thread.Sleep(3000);
+                source.SetResult(true);
+
+            });
+            return source.Task;
+        }
+
+
+
+
+            
+       
+        private bool _cameraVisibility;
+        public bool CameraVisibility
+        {
+            get { return _cameraVisibility; }
+            set
+            {
+                _cameraVisibility = value;
+                OnPropertyChanged(() => CameraVisibility);
+            }
+        }
+
+        private bool _emailVisibility;
+        public bool EmailVisibility
+        {
+            get { return _emailVisibility; }
+            set
+            {
+                _emailVisibility = value;
+                OnPropertyChanged(() => EmailVisibility);
+            }
+        }
          
+        private bool _phoneVisibility;
+        public bool PhoneVisibility
+        {
+            get { return _phoneVisibility; }
+            set
+            {
+                _phoneVisibility = value;
+                OnPropertyChanged(() => PhoneVisibility);
+            }
+        }
+
+        private bool _searchVisibility;
+        public bool SearchVisibility
+        {
+            get { return _searchVisibility; }
+            set
+            {
+                _searchVisibility = value;
+                OnPropertyChanged(() => SearchVisibility);
+            }
+        }
     }
 }

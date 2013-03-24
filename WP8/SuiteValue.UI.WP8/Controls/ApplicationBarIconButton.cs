@@ -1,10 +1,11 @@
 ﻿using System;
+using System.Collections;
 using System.Windows;
 
 namespace SuiteValue.UI.WP8.Controls
 {    
     public class ApplicationBarIconButton : ApplicationBarMenuItem, Microsoft.Phone.Shell.IApplicationBarIconButton
-    {
+    {        
         #region Dependency Properties
 
         #region IconUri
@@ -27,25 +28,20 @@ namespace SuiteValue.UI.WP8.Controls
             var button = SysAppBarMenuItem as Microsoft.Phone.Shell.IApplicationBarIconButton;
             button.IconUri = iconUri;
         }
-        #endregion        
+        #endregion
 
         #endregion
     
         #region Overrides
-        protected override void OnAttach(Microsoft.Phone.Shell.IApplicationBar sysAppBar)
+        protected override IList AppBarItemsCollection
         {
-            sysAppBar.Buttons.Add(SysAppBarMenuItem);
-        }
-
-        protected override void OnDettach(Microsoft.Phone.Shell.IApplicationBar sysAppBar)
-        {
-            sysAppBar.Buttons.Remove(SysAppBarMenuItem);
+            get { return AppBar.Buttons; }
         }
 
         protected override Microsoft.Phone.Shell.IApplicationBarMenuItem CreateApplicationBarMenuItem()
         {
             return new Microsoft.Phone.Shell.ApplicationBarIconButton();
-        } 
+        }        
         #endregion
     }
 }

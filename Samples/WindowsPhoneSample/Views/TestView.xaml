@@ -7,6 +7,7 @@
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wp8="clr-namespace:SuiteValue.UI.WP8;assembly=SuiteValue.UI.WP8"
+    xmlns:controls="clr-namespace:SuiteValue.UI.WP8.Controls;assembly=SuiteValue.UI.WP8"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
@@ -29,8 +30,23 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Content="Navgiate" Command="{Binding NavigateCommand}"/>
+            <StackPanel>
+                <Button Content="Navgiate" Command="{Binding NavigateCommand}"/>
+                <ToggleButton IsChecked="{Binding CameraVisibility, Mode=TwoWay}" Content="camera visibility" />
+                <ToggleButton IsChecked="{Binding EmailVisibility, Mode=TwoWay}" Content="email visibility" />
+                <ToggleButton IsChecked="{Binding PhoneVisibility, Mode=TwoWay}" Content="phone Visibility" />
+                <ToggleButton IsChecked="{Binding SearchVisibility, Mode=TwoWay}" Content="search visibility" />
+            </StackPanel>            
         </Grid>
     </Grid>
+
+    <controls:PhoneApplicationPage.ApplicationBar>
+        <controls:ApplicationBar IsVisible="True" Mode="Default">
+            <controls:ApplicationBarIconButton IconUri="/Assets/feature.camera.png" Text="camera" IsVisible="{Binding CameraVisibility}" />
+            <controls:ApplicationBarIconButton IconUri="/Assets/feature.email.png" Text="email" IsVisible="{Binding EmailVisibility}" />
+            <controls:ApplicationBarIconButton IconUri="/Assets/feature.phone.png" Text="phone" IsVisible="{Binding PhoneVisibility}" />
+            <controls:ApplicationBarIconButton IconUri="/Assets/feature.search.png" Text="search" IsVisible="{Binding SearchVisibility}" />
+        </controls:ApplicationBar>
+    </controls:PhoneApplicationPage.ApplicationBar>
 
 </wp8:NavigationPage>

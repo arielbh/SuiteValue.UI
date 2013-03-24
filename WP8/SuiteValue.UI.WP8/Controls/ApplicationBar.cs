@@ -37,8 +37,6 @@ namespace SuiteValue.UI.WP8.Controls
 
         #region Dependency Properties
 
-
-
         public FlowDirection FlowDirection
         {
             get { return (FlowDirection)GetValue(FlowDirectionProperty); }
@@ -57,6 +55,7 @@ namespace SuiteValue.UI.WP8.Controls
             {
                 newButtons = newButtons.Cast<ApplicationBarIconButton>().ToList();
             }
+
             bar.UpdateItemsSource(newButtons as List<ApplicationBarIconButton>, (FlowDirection)e.NewValue);
         }
 
@@ -68,12 +67,14 @@ namespace SuiteValue.UI.WP8.Controls
                 {
                     if (flowDirection == FlowDirection.RightToLeft)
                         buttons.Reverse();
+
                     Buttons.Dettach(SysAppBar);
                     Buttons.Clear();
                     foreach (ApplicationBarIconButton button in buttons)
                     {
                         Buttons.Add(button);
                     }
+
                     Buttons.Attach(DataContext, SysAppBar);
                 }
             }

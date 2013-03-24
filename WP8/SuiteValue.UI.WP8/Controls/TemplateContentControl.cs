@@ -1,5 +1,6 @@
 ﻿using System.Windows;
 using System.Windows.Controls;
+using SuiteValue.UI.WP8.Extensions;
 
 namespace SuiteValue.UI.WP8.Controls
 {
@@ -9,6 +10,11 @@ namespace SuiteValue.UI.WP8.Controls
         {
             base.OnContentChanged(oldContent, newContent);
             if (newContent is UIElement || ContentTemplate != null || newContent == null) return;
+            if (ContentTemplateSelector != null)
+            {
+                ContentTemplate = ContentTemplateSelector.SelectTemplate(newContent, this);
+                return;
+            }
 
             string key = newContent.GetType().Name;
             if (!string.IsNullOrEmpty(Suffix))
@@ -27,5 +33,23 @@ namespace SuiteValue.UI.WP8.Controls
         // Using a DependencyProperty as the backing store for Suffix.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SuffixProperty =
             DependencyProperty.Register("Suffix", typeof(string), typeof(TemplateContentControl), new PropertyMetadata(string.Empty));
+
+
+
+        public DataTemplateSelector ContentTemplateSelector
+        {
+            get { return (DataTemplateSelector)GetValue(ContentTemplateSelectorProperty); }
+            set { SetValue(ContentTemplateSelectorProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ContentTemplateSelector.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ContentTemplateSelectorProperty =
+            DependencyProperty.Register("ContentTemplateSelector", typeof(DataTemplateSelector), typeof(TemplateContentControl), new PropertyMetadata(null));
+
+
+
+
+
+
     }
 }

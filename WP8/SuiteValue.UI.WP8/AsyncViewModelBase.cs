@@ -1,25 +1,22 @@
 ﻿using System;
 using System.Threading.Tasks;
 using System.Windows;
+using Microsoft.Phone.Net.NetworkInformation;
 using SuiteValue.UI.MVVM;
 using Windows.Networking.Connectivity;
 
 namespace SuiteValue.UI.WP8
 {
-    public class AsyncViewModelBase : AwareViewModelBase
+    public class AsyncViewModelBase : AwareViewModelBase, IAsyncViewModel
     {
-        private bool DoWeHaveInternetConnection(bool intranet)
+        private static bool DoWeHaveInternetConnection()
         {
-            var internetConnectionProfile = NetworkInformation.GetInternetConnectionProfile();
-            var level = internetConnectionProfile.GetNetworkConnectivityLevel();
-            return intranet
-                       ? level == NetworkConnectivityLevel.LocalAccess
-                       : level == NetworkConnectivityLevel.InternetAccess;
+            return DeviceNetworkInformation.IsNetworkAvailable;
         }
 
-        protected void VerifyConnection(Action success, Action fail = null, bool intranetEnough = false)
+        protected void VerifyConnection(Action success, Action fail = null)
         {
-            if (DoWeHaveInternetConnection(intranetEnough))
+            if (DoWeHaveInternetConnection())
             {
                 success();
                 return;
@@ -27,9 +24,9 @@ namespace SuiteValue.UI.WP8
             if (fail != null) fail();
         }
 
-        protected T VerifyConnection<T>(Func<T> success, Func<T> fail = null, bool intranetEnough = false)
+        protected T VerifyConnection<T>(Func<T> success, Func<T> fail = null)
         {
-            if (DoWeHaveInternetConnection(intranetEnough))
+            if (DoWeHaveInternetConnection())
             {
                 return success();
             }
@@ -37,10 +34,9 @@ namespace SuiteValue.UI.WP8
             return default(T);
         }
 
-        protected async Task<T> VerifyConnection<T>(Func<Task<T>> success, Func<Task<T>> fail = null,
-                                                    bool intranetEnough = false)
+        protected async Task<T> VerifyConnection<T>(Func<Task<T>> success, Func<Task<T>> fail = null)
         {
-            if (DoWeHaveInternetConnection(intranetEnough))
+            if (DoWeHaveInternetConnection())
             {
                 return await success();
             }
@@ -125,5 +121,11 @@ namespace SuiteValue.UI.WP8
                 }
             }
         }
+    }
+
+    public interface IAsyncViewModel
+    {
+        bool IsInAsync { get; set; }
+        string AsyncMessage { get; set; }
     }
 }

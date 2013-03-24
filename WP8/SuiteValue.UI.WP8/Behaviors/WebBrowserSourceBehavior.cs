@@ -14,7 +14,7 @@ namespace SuiteValue.UI.WP8.Behaviors
             AssociatedObject.Navigating += AssociatedObjectNavigating;
         }
 
-        void AssociatedObjectNavigating(object sender, NavigatingEventArgs e)
+        private void AssociatedObjectNavigating(object sender, NavigatingEventArgs e)
         {
             if (NavigatingAction != null)
             {
@@ -31,32 +31,52 @@ namespace SuiteValue.UI.WP8.Behaviors
 
         public Uri Source
         {
-            get { return (Uri)GetValue(SourceProperty); }
+            get { return (Uri) GetValue(SourceProperty); }
             set { SetValue(SourceProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for Source.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SourceProperty =
-            DependencyProperty.Register("Source", typeof(Uri), typeof(WebBrowserSourceBehavior), new PropertyMetadata(null, PropertyChangedCallback));
+            DependencyProperty.Register("Source", typeof (Uri), typeof (WebBrowserSourceBehavior),
+                                        new PropertyMetadata(null, PropertyChangedCallback));
 
         private static void PropertyChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            (d as WebBrowserSourceBehavior).AssociatedObject.Navigate((Uri)e.NewValue);
+            (d as WebBrowserSourceBehavior).AssociatedObject.Navigate((Uri) e.NewValue);
         }
 
 
 
         public Func<Uri, bool> NavigatingAction
         {
-            get { return (Func<Uri, bool>)GetValue(NavigatingActionProperty); }
+            get { return (Func<Uri, bool>) GetValue(NavigatingActionProperty); }
             set { SetValue(NavigatingActionProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for NavigatingAction.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty NavigatingActionProperty =
-            DependencyProperty.Register("NavigatingAction", typeof(Func<Uri, bool>), typeof(WebBrowserSourceBehavior), new PropertyMetadata(null));
+            DependencyProperty.Register("NavigatingAction", typeof (Func<Uri, bool>), typeof (WebBrowserSourceBehavior),
+                                        new PropertyMetadata(null));
 
-        
-        
+
+        public static readonly DependencyProperty HtmlProperty = DependencyProperty.RegisterAttached(
+            "Html", typeof (string), typeof (WebBrowserSourceBehavior), new PropertyMetadata(OnHtmlChanged));
+
+        public static string GetHtml(DependencyObject dependencyObject)
+        {
+            return (string) dependencyObject.GetValue(HtmlProperty);
+        }
+
+        public static void SetHtml(DependencyObject dependencyObject, string value)
+        {
+            dependencyObject.SetValue(HtmlProperty, value);
+        }
+
+        private static void OnHtmlChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            var html = e.NewValue.ToString();
+            (d as WebBrowserSourceBehavior).AssociatedObject.NavigateToString(html);
+        }
     }
-}
+} 
+    

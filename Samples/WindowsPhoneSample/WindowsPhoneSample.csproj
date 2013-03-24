@@ -145,6 +145,10 @@
     <Content Include="Assets\ApplicationIcon.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>
+    <Content Include="Assets\feature.camera.png" />
+    <Content Include="Assets\feature.email.png" />
+    <Content Include="Assets\feature.phone.png" />
+    <Content Include="Assets\feature.search.png" />
     <Content Include="Assets\Tiles\FlipCycleTileLarge.png">
       <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
     </Content>

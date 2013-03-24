@@ -8,10 +8,11 @@ namespace SuiteValue.UI.WP8.Controls
     {        
         internal void Attach(object dataContext, IApplicationBar sysAppBar)
         {
-            foreach (var item in this)
+            for (int index = 0; index < Count; index++)
             {
+                var item = this[index];
                 item.DataContext = dataContext;
-                item.Attach(sysAppBar);
+                item.Attach(sysAppBar, index, this);
             }
         }
 
