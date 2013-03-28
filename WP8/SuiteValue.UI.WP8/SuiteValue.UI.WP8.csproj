@@ -128,6 +128,7 @@
     <Compile Include="NavigationPage.cs" />
     <Compile Include="NavigationViewModelBase.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="StatisticsHelper.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\..\Portable\SuiteValue.UI.MVVM\SuiteValue.UI.MVVM.csproj">

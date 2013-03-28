@@ -109,6 +109,9 @@
     </Compile>
     <Compile Include="ViewModels\Test2ViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
+    <Compile Include="Views\Test3View.xaml.cs">
+      <DependentUpon>Test3View.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Test2View.xaml.cs">
       <DependentUpon>Test2View.xaml</DependentUpon>
     </Compile>
@@ -125,6 +128,10 @@
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
+    <Page Include="Views\Test3View.xaml">
+      <Generator>MSBuild:Compile</Generator>
+      <SubType>Designer</SubType>
+    </Page>
     <Page Include="Views\Test2View.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
@@ -139,6 +146,10 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
+    <None Include="WindowsPhoneSample_2013_03_26_16_30_34.sap" />
+    <None Include="WindowsPhoneSample_2013_03_26_16_33_09.sap" />
+    <None Include="WindowsPhoneSample_2013_03_26_16_40_26.sap" />
+    <None Include="WindowsPhoneSample_2013_03_26_16_40_57.sap" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AlignmentGrid.png" />

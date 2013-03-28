@@ -6,7 +6,9 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using SuiteValue.UI.WP8;
 using WindowsPhoneSample.Resources;
+using NavigationEventArgs = System.Windows.Navigation.NavigationEventArgs;
 
 namespace WindowsPhoneSample
 {
@@ -23,6 +25,7 @@ namespace WindowsPhoneSample
         /// </summary>
         public App()
         {
+            
             // Global handler for uncaught exceptions.
             UnhandledException += Application_UnhandledException;
 
@@ -54,6 +57,20 @@ namespace WindowsPhoneSample
                 // and consume battery power when the user is not using the phone.
                 PhoneApplicationService.Current.UserIdleDetectionMode = IdleDetectionMode.Disabled;
             }
+
+            StatisticsHelper.OnMemoryUpdated += StatisticsHelper_OnMemoryUpdated;
+            StatisticsHelper.EnableMemoryOutput();
+
+        }
+
+        void StatisticsHelper_OnMemoryUpdated(object sender, EventArgs e)
+        {
+
+            Debug.WriteLine(string.Format("Memory: {0}MB. Peak: {1}MB. Limit: {2}MB", StatisticsHelper.Memory.ToString(),
+                                          StatisticsHelper.MemoryPeak.ToString(),
+                                          StatisticsHelper.MemoryUsageLimit.ToString()));
+
+
 
         }
 

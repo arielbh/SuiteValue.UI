@@ -1,4 +1,5 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
 
 namespace SuiteValue.UI.WP8
@@ -13,6 +14,20 @@ namespace SuiteValue.UI.WP8
             
             this.ViewUri = viewUri;
             this.Parameters = parameters;
+        }
+    }
+
+    public class NavigationBackEventArgs : EventArgs
+    {
+        public NavigationViewModelBase ViewModel { get; set; }
+        public IDictionary<string, string> Parameters { get; private set; }
+
+
+        public NavigationBackEventArgs(NavigationViewModelBase viewModel, IDictionary<string, string> parameters)
+        {
+            ViewModel = viewModel;
+            this.Parameters = parameters;
+
         }
     }
 }

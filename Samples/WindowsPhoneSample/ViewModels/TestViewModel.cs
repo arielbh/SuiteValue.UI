@@ -41,6 +41,7 @@ namespace WindowsPhoneSample.ViewModels
                                                      {
                                                          Test2ViewModel vm = new Test2ViewModel();
                                                          vm.State = "YoYo";
+                                                         vm.Payload = this;
                                                          Navigate<Test2ViewModel>(vm);
                                                      }));
             }

@@ -1,5 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.Specialized;
+using System.Diagnostics;
 using System.Linq;
 using System.Net;
 using System.Windows;
@@ -7,6 +9,7 @@ using System.Windows.Controls;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
+using SuiteValue.UI.WP8;
 using WindowsPhoneSample.Resources;
 
 namespace WindowsPhoneSample
@@ -18,8 +21,26 @@ namespace WindowsPhoneSample
         {
             InitializeComponent();
 
+
             // Sample code to localize the ApplicationBar
             //BuildLocalizedApplicationBar();
+        }
+        protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
+        {
+            base.OnNavigatedTo(e);
+            this.EnableNavigationLogging();
+            StatisticsHelper.NavigationEvents.CollectionChanged += NavigationEvents_CollectionChanged;
+        }
+
+        void NavigationEvents_CollectionChanged(object sender, System.Collections.Specialized.NotifyCollectionChangedEventArgs e)
+        {
+            if (e.Action == NotifyCollectionChangedAction.Add)
+            {
+                foreach (var msg in e.NewItems)
+                {
+                    Debug.WriteLine(msg);
+                }
+            }
         }
 
         // Sample code for building a localized ApplicationBar

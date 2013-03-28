@@ -1,7 +1,11 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.ComponentModel;
+using System.Linq;
 using System.Net;
 using System.Text;
+using System.Threading;
+using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Data;
@@ -57,26 +61,74 @@ namespace SuiteValue.UI.WP8
 
         private void ViewModelChanged(INavigationViewModel oldViewModel, INavigationViewModel newViewModel)
         {
-            if (oldViewModel != null)
-            {
-                oldViewModel.RequestNavigateTo -= ViewModel_RequestNavigateTo;
-                oldViewModel.RequestNavigateBack -= ViewModel_RequestNavigateBack;
-                if (oldViewModel is IAsyncViewModel)
-                {
-                    UnregisterProgressBar(oldViewModel as IAsyncViewModel);
-                }
-            }
+            UnregisterViewModel(oldViewModel);
+            RegisterViewModel(newViewModel);
+            DataContext = newViewModel;
+        }
+
+        private void RegisterViewModel(INavigationViewModel newViewModel)
+        {
             if (newViewModel != null && !newViewModel.RegisteredForNavigation)
             {
                 newViewModel.RequestNavigateTo += ViewModel_RequestNavigateTo;
                 newViewModel.RequestNavigateBack += ViewModel_RequestNavigateBack;
+                newViewModel.RequestNavigateBackTo += newViewModel_RequestNavigateBackTo;
                 newViewModel.RegisteredForNavigation = true;
                 if (newViewModel is IAsyncViewModel)
                 {
                     RegisterProgressBar(newViewModel as IAsyncViewModel);
                 }
             }
-            DataContext = newViewModel;
+        }
+
+        private void UnregisterViewModel(INavigationViewModel oldViewModel)
+        {
+            if (oldViewModel != null)
+            {
+                oldViewModel.RequestNavigateTo -= ViewModel_RequestNavigateTo;
+                oldViewModel.RequestNavigateBack -= ViewModel_RequestNavigateBack;
+                oldViewModel.RequestNavigateBackTo -= newViewModel_RequestNavigateBackTo;
+                oldViewModel.RegisteredForNavigation = false;
+
+                if (oldViewModel is IAsyncViewModel)
+                {
+                    UnregisterProgressBar(oldViewModel as IAsyncViewModel);
+                }
+            }
+        }
+
+        private void newViewModel_RequestNavigateBackTo(object sender, NavigationBackEventArgs e)
+        {
+            if (e.Parameters != null)
+            {
+                PhoneApplicationService.Current.State["back_params"] = e.Parameters;
+            }
+            JournalEntry target = null;
+            var backStackList = NavigationService.BackStack.ToList();
+            foreach (var backStack in backStackList)
+            {
+                var uri = backStack.Source.ToString();
+                if (uri.Contains(e.ViewModel.ViewHint))
+                {
+                    target = backStack;
+                    break;
+                }
+            }
+            if (target == null)
+            {
+                // We can't find anything in the backlog
+                return;
+            }
+            var index = backStackList.IndexOf(target);
+
+            for (int i = 0; i < index; i++)
+            {
+                NavigationService.RemoveBackEntry();
+            }
+            if (NavigationService.CanGoBack)
+            {
+                NavigationService.GoBack();
+            }
         }
 
         private void UnregisterProgressBar(IAsyncViewModel viewModel)
@@ -120,6 +172,9 @@ namespace SuiteValue.UI.WP8
                 // the remove the trailing "&"
                 builder.Remove(builder.Length - 1, 1);
             }
+
+            
+
             NavigationService.Navigate(new Uri(builder.ToString(), UriKind.Relative));
         }
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
@@ -139,7 +194,15 @@ namespace SuiteValue.UI.WP8
             }
             if (ViewModel != null)
             {
-                (ViewModel as INavigationViewModel).OnNavigatedTo(e.NavigationMode, NavigationContext.QueryString, e.IsNavigationInitiator);
+                RegisterViewModel(ViewModel as INavigationViewModel);
+                IDictionary<string, string> parameters;
+                if (PhoneApplicationService.Current.State.ContainsKey("back_params"))
+                {
+                    parameters = PhoneApplicationService.Current.State["back_params"] as IDictionary<string, string>;
+                    PhoneApplicationService.Current.State.Remove("back_params");
+                }
+                else parameters = NavigationContext.QueryString;
+                (ViewModel as INavigationViewModel).OnNavigatedTo(e.NavigationMode, parameters, e.IsNavigationInitiator);
             }
             base.OnNavigatedTo(e);
         }
@@ -149,6 +212,7 @@ namespace SuiteValue.UI.WP8
             {
                 e.Cancel = (ViewModel as INavigationViewModel).OnNavigatingFrom(e.NavigationMode);
             }
+            UnregisterViewModel(ViewModel as INavigationViewModel);
             base.OnNavigatingFrom(e);
         }
         protected override void OnNavigatedFrom(System.Windows.Navigation.NavigationEventArgs e)

@@ -10,6 +10,8 @@ namespace SuiteValue.UI.WP8
         private string _viewHint;
         public event EventHandler<NavigationEventArgs> RequestNavigateTo;
         public event EventHandler<EventArgs> RequestNavigateBack;
+        public event EventHandler<NavigationBackEventArgs> RequestNavigateBackTo;
+
 
         public bool RegisteredForNavigation { get; set; }
 
@@ -43,6 +45,7 @@ namespace SuiteValue.UI.WP8
         protected virtual void Navigate<T>(T viewModel, IDictionary<string, string> parameters = null)
             where T : NavigationViewModelBase
         {
+            
             if (parameters == null)
             {
                 parameters = new Dictionary<string, string>();
@@ -52,6 +55,22 @@ namespace SuiteValue.UI.WP8
             PhoneApplicationService.Current.State[uniqueKey] = viewModel;
 
             Navigate(viewModel.ViewHint, parameters);
+        }
+
+        protected virtual void NavigateBackTo<T>(T viewModel, IDictionary<string, string> parameters = null) where T : NavigationViewModelBase
+        {
+            if (RequestNavigateBackTo != null)
+            {
+                RequestNavigateBackTo(this, new NavigationBackEventArgs(viewModel, parameters));
+            }
+            
+        }
+
+
+        void INavigator.NavigateBackTo<T>(T viewModel, IDictionary<string, string> parameters)
+        {
+            NavigateBackTo(viewModel, parameters);
+            
         }
 
         protected virtual string DeriveViewNameByConvention()
@@ -64,7 +83,7 @@ namespace SuiteValue.UI.WP8
             return "/Views/" + DeriveViewNameByConvention();
         }
 
-        protected string ViewHint
+        public string ViewHint
         {
             get { return _viewHint ?? (_viewHint = DecideViewHint()); }
         }
@@ -109,4 +128,6 @@ namespace SuiteValue.UI.WP8
             Navigate(viewModel, parameters);
         }
     }
+
+
 }
