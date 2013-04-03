@@ -146,10 +146,6 @@
     <None Include="Properties\WMAppManifest.xml">
       <SubType>Designer</SubType>
     </None>
-    <None Include="WindowsPhoneSample_2013_03_26_16_30_34.sap" />
-    <None Include="WindowsPhoneSample_2013_03_26_16_33_09.sap" />
-    <None Include="WindowsPhoneSample_2013_03_26_16_40_26.sap" />
-    <None Include="WindowsPhoneSample_2013_03_26_16_40_57.sap" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Assets\AlignmentGrid.png" />

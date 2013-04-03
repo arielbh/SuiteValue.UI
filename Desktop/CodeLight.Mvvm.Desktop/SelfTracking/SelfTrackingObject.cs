@@ -2,9 +2,17 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
-using CodeValue.CodeLight.Mvvm.Validation;
+#if WINDOWS_PHONE
+using SuiteValue.UI.WP8.Validation;
+#else
+using CodeValue.CodeLight.Mvvm.Validation
+#endif
 
+#if WINDOWS_PHONE
+namespace SuiteValue.UI.WP8
+#else
 namespace CodeValue.CodeLight.Mvvm.SelfTracking
+#endif
 {
     public class SelfTrackingObject : ValidatingObject
     {

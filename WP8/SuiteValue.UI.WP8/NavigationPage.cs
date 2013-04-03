@@ -117,6 +117,7 @@ namespace SuiteValue.UI.WP8
             if (target == null)
             {
                 // We can't find anything in the backlog
+                e.ViewModel.RollbackFromNavigateBackTo(e.Parameters);
                 return;
             }
             var index = backStackList.IndexOf(target);

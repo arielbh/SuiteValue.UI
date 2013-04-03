@@ -1,6 +1,10 @@
 ﻿using System;
 
+#if WINDOWS_PHONE
+namespace SuiteValue.UI.WP8.Validation
+#else
 namespace CodeValue.CodeLight.Mvvm.Validation
+#endif
 {
     // Borrowed from Cinch by Sasha Barber
     public class SimpleRule : Rule

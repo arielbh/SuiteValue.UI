@@ -1,6 +1,10 @@
 ﻿// Borrowed from Cinch by Sasha Barber
 
+#if WINDOWS_PHONE
+namespace SuiteValue.UI.WP8.Validation
+#else
 namespace CodeValue.CodeLight.Mvvm.Validation
+#endif
 {
     public abstract class Rule
     {

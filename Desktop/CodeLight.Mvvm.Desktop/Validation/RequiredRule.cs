@@ -1,6 +1,9 @@
 ﻿using System;
-
+#if WINDOWS_PHONE
+namespace SuiteValue.UI.WP8.Validation
+#else
 namespace CodeValue.CodeLight.Mvvm.Validation
+#endif
 {
     public class RequiredRule : SimpleRule
     {

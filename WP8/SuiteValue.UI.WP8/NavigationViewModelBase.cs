@@ -73,6 +73,12 @@ namespace SuiteValue.UI.WP8
             
         }
 
+        internal void RollbackFromNavigateBackTo(IDictionary<string, string> parameters)
+        {
+            Navigate(this, parameters);
+
+        }
+
         protected virtual string DeriveViewNameByConvention()
         {
             return GetType().Name.Replace("Model", "") + ".xaml";

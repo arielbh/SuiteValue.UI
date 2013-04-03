@@ -2,14 +2,22 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+#if !WINDOWS_PHONE
 using System.ComponentModel.DataAnnotations;
+#else
+using SuiteValue.UI.MVVM;
+#endif
 using System.Diagnostics;
 using System.Linq;
 using System.Text;
 
-// Borrowed from Cinch by Sasha Barber
 
+// Borrowed from Cinch by Sasha Barber
+#if WINDOWS_PHONE
+namespace SuiteValue.UI.WP8.Validation
+#else
 namespace CodeValue.CodeLight.Mvvm.Validation
+#endif
 {
     public class ValidatingObject : NotifyObject, IDataErrorInfo
     {
