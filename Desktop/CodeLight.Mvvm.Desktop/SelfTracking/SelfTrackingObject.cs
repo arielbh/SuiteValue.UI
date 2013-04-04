@@ -5,7 +5,7 @@ using System.Linq.Expressions;
 #if WINDOWS_PHONE
 using SuiteValue.UI.WP8.Validation;
 #else
-using CodeValue.CodeLight.Mvvm.Validation
+using CodeValue.CodeLight.Mvvm.Validation;
 #endif
 
 #if WINDOWS_PHONE
