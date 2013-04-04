@@ -124,6 +124,7 @@
     <Compile Include="AwareViewModelBase.cs" />
     <Compile Include="Behaviors\CommandVisibilityBehavior.cs" />
     <Compile Include="Behaviors\LongListSelector.cs" />
+    <Compile Include="Behaviors\PivotCleanupBehavior.cs" />
     <Compile Include="Behaviors\WebBrowserSourceBehavior.cs" />
     <Compile Include="CommandableViewModelBase.cs" />
     <Compile Include="Controls\ApplicationBar.cs" />
