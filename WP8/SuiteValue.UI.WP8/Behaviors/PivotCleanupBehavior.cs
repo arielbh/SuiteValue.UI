@@ -37,7 +37,6 @@ namespace SuiteValue.UI.WP8.Behaviors
                 x.Content = null;
                 x.ContentTemplate = null;
             }
-            AssociatedObject.Items.Clear();
             AssociatedObject.ItemsSource = newItems;
         }
     }
