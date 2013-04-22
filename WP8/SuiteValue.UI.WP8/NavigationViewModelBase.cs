@@ -11,6 +11,7 @@ namespace SuiteValue.UI.WP8
         public event EventHandler<NavigationEventArgs> RequestNavigateTo;
         public event EventHandler<EventArgs> RequestNavigateBack;
         public event EventHandler<NavigationBackEventArgs> RequestNavigateBackTo;
+        public event EventHandler<EventArgs> RequestUnregister;
 
 
         public bool RegisteredForNavigation { get; set; }
@@ -32,6 +33,15 @@ namespace SuiteValue.UI.WP8
         protected virtual bool OnBackKeyPress()
         {
             return false;
+        }
+
+        public void UnregisterFromPage()
+        {
+            KeepRegistrationsAlive = false;
+            if (RequestUnregister != null)
+            {
+                RequestUnregister(this, new EventArgs());
+            }
         }
 
         protected virtual void Navigate(string viewUri, IDictionary<string, string> parameters = null)
@@ -133,7 +143,9 @@ namespace SuiteValue.UI.WP8
         {
             Navigate(viewModel, parameters);
         }
-    }
+        public bool KeepRegistrationsAlive { get; set; }
+
+    }           
 
 
 }

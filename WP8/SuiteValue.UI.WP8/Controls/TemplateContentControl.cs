@@ -9,7 +9,8 @@ namespace SuiteValue.UI.WP8.Controls
         protected override void OnContentChanged(object oldContent, object newContent)
         {
             base.OnContentChanged(oldContent, newContent);
-            if (newContent is UIElement || ContentTemplate != null || newContent == null) return;
+            if (newContent is UIElement || newContent == null) return;
+            if (oldContent == null && ContentTemplate != null) return;
             if (ContentTemplateSelector != null)
             {
                 ContentTemplate = ContentTemplateSelector.SelectTemplate(newContent, this);

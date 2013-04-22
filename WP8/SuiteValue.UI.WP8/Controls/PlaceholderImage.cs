@@ -108,10 +108,12 @@ namespace SuiteValue.UI.WP8.Controls
 
         private void OnSourceChanged(ImageSource oldValue, ImageSource newValue)
         {
+            
             VisualStateManager.GoToState(this, "Content", false);
 
             var oldBitmapSource = oldValue as BitmapImage;
             var newBitmapSource = newValue as BitmapImage;
+            newBitmapSource.CreateOptions = BitmapCreateOptions.BackgroundCreation;
 
             if (oldBitmapSource != null)
             {

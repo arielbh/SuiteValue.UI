@@ -9,11 +9,15 @@ namespace SuiteValue.UI.WP8
         event EventHandler<NavigationEventArgs> RequestNavigateTo;
         event EventHandler<EventArgs> RequestNavigateBack;
         event EventHandler<NavigationBackEventArgs> RequestNavigateBackTo;
+        event EventHandler<EventArgs> RequestUnregister;
         bool RegisteredForNavigation { get; set; }
+        bool KeepRegistrationsAlive { get; set; }
+       
 
         void OnNavigatedTo(NavigationMode mode, IDictionary<string, string> parameter, bool isNavigationInitiator);
         bool OnNavigatingFrom(NavigationMode mode);
         void OnNavigatedFrom(NavigationMode mode);
         bool OnBackKeyPress();
+        void UnregisterFromPage();
     }
 }

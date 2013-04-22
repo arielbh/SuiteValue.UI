@@ -73,6 +73,7 @@ namespace SuiteValue.UI.WP8
                 newViewModel.RequestNavigateTo += ViewModel_RequestNavigateTo;
                 newViewModel.RequestNavigateBack += ViewModel_RequestNavigateBack;
                 newViewModel.RequestNavigateBackTo += newViewModel_RequestNavigateBackTo;
+                newViewModel.RequestUnregister += ViewModel_RequestUnregister;
                 newViewModel.RegisteredForNavigation = true;
                 if (newViewModel is IAsyncViewModel)
                 {
@@ -81,13 +82,20 @@ namespace SuiteValue.UI.WP8
             }
         }
 
+        void ViewModel_RequestUnregister(object sender, EventArgs e)
+        {
+            UnregisterViewModel(ViewModel as INavigationViewModel);
+        }
+
         private void UnregisterViewModel(INavigationViewModel oldViewModel)
         {
-            if (oldViewModel != null)
+            if (oldViewModel != null && !oldViewModel.KeepRegistrationsAlive)
             {
                 oldViewModel.RequestNavigateTo -= ViewModel_RequestNavigateTo;
                 oldViewModel.RequestNavigateBack -= ViewModel_RequestNavigateBack;
                 oldViewModel.RequestNavigateBackTo -= newViewModel_RequestNavigateBackTo;
+                oldViewModel.RequestUnregister -= ViewModel_RequestUnregister;
+
                 oldViewModel.RegisteredForNavigation = false;
 
                 if (oldViewModel is IAsyncViewModel)
@@ -226,7 +234,7 @@ namespace SuiteValue.UI.WP8
         }
         protected override void OnBackKeyPress(CancelEventArgs e)
         {
-            if (ViewModel != null)
+            if (!e.Cancel && ViewModel != null)
             {
                 e.Cancel = (ViewModel as INavigationViewModel).OnBackKeyPress();
             }
