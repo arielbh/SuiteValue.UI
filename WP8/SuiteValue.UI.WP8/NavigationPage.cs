@@ -168,6 +168,17 @@ namespace SuiteValue.UI.WP8
         }
         void ViewModel_RequestNavigateTo(object sender, NavigationEventArgs e)
         {
+            string currentViewUri = NavigationService.CurrentSource.OriginalString;
+            var queryIndex = currentViewUri.IndexOf('?');
+            if (queryIndex > 0)
+            {
+                currentViewUri = currentViewUri.Substring(0, queryIndex);
+            }
+            if (currentViewUri == e.ViewUri)
+            {
+                return;
+            }
+
             StringBuilder builder = new StringBuilder();
             builder.Append(e.ViewUri);
             if (e.Parameters != null)
@@ -183,7 +194,7 @@ namespace SuiteValue.UI.WP8
             }
 
             
-
+            
             NavigationService.Navigate(new Uri(builder.ToString(), UriKind.Relative));
         }
         protected override void OnNavigatedTo(System.Windows.Navigation.NavigationEventArgs e)
