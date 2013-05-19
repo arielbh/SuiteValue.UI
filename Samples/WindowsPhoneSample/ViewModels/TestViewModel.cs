@@ -1,7 +1,9 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
 using SuiteValue.UI.MVVM;
 using SuiteValue.UI.WP8;
 
@@ -14,7 +16,45 @@ namespace WindowsPhoneSample.ViewModels
         {
             base.OnNavigatedTo(mode, parameter, isNavigationInitiator);
             State = "Test1: Navigated";
+            Callback = HandleOrientation;
+            PartViewModel = new PartViewModel();
         }
+
+        private PartViewModel _partViewModel;
+
+        public PartViewModel PartViewModel
+        {
+            get { return _partViewModel; }
+            set
+            {
+                if (value != _partViewModel)
+                {
+                    _partViewModel = value;
+                    OnPropertyChanged(() => PartViewModel);
+                }
+            }
+        }
+
+        public void HandleOrientation(PageOrientation pageOrientation)
+        {
+            
+        }
+
+        private Action<PageOrientation> _callback;
+
+        public Action<PageOrientation> Callback
+        {
+            get { return _callback; }
+            set
+            {
+                if (value != _callback)
+                {
+                    _callback = value;
+                    OnPropertyChanged(() => Callback);
+                }
+            }
+        }
+
         private string _state;
 
         public string State

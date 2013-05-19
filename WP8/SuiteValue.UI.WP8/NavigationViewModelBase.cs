@@ -7,6 +7,8 @@ namespace SuiteValue.UI.WP8
 {
     public class NavigationViewModelBase : CommandableViewModelBase, INavigationViewModel, INavigator
     {
+        internal static Dictionary<string, object> NavigationState = new Dictionary<string, object>();
+
         private string _viewHint;
         public event EventHandler<NavigationEventArgs> RequestNavigateTo;
         public event EventHandler<EventArgs> RequestNavigateBack;
@@ -62,7 +64,7 @@ namespace SuiteValue.UI.WP8
             }
             var uniqueKey = Guid.NewGuid().ToString();
             parameters["ViewModelId"] = uniqueKey;
-            PhoneApplicationService.Current.State[uniqueKey] = viewModel;
+            NavigationState[uniqueKey] = viewModel;
 
             Navigate(viewModel.ViewHint, parameters);
         }
@@ -105,8 +107,12 @@ namespace SuiteValue.UI.WP8
         }
 
 
-        protected virtual void NavigateBack()
+        protected virtual void NavigateBack(IDictionary<string, string> parameters = null)
         {
+            if (parameters != null)
+            {
+                NavigationState.Add("back_params", parameters);
+            }
             if (RequestNavigateBack != null)
             {
                 RequestNavigateBack(this, EventArgs.Empty);

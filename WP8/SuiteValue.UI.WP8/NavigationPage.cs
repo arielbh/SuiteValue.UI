@@ -109,7 +109,7 @@ namespace SuiteValue.UI.WP8
         {
             if (e.Parameters != null)
             {
-                PhoneApplicationService.Current.State["back_params"] = e.Parameters;
+                NavigationViewModelBase.NavigationState["back_params"] = e.Parameters;
             }
             JournalEntry target = null;
             var backStackList = NavigationService.BackStack.ToList();
@@ -168,18 +168,21 @@ namespace SuiteValue.UI.WP8
         }
         void ViewModel_RequestNavigateTo(object sender, NavigationEventArgs e)
         {
-            string currentViewUri = NavigationService.CurrentSource.OriginalString;
-            var queryIndex = currentViewUri.IndexOf('?');
-            if (queryIndex > 0)
+            if (!AlwaysNavigateWhenUsingTheSameAddress)
             {
-                currentViewUri = currentViewUri.Substring(0, queryIndex);
-            }
-            if (currentViewUri == e.ViewUri)
-            {
-                return;
+                string currentViewUri = NavigationService.CurrentSource.OriginalString;
+                var queryIndex = currentViewUri.IndexOf('?');
+                if (queryIndex > 0)
+                {
+                    currentViewUri = currentViewUri.Substring(0, queryIndex);
+                }
+                if (currentViewUri == e.ViewUri)
+                {
+                    return;
+                }
             }
 
-            StringBuilder builder = new StringBuilder();
+            var builder = new StringBuilder();
             builder.Append(e.ViewUri);
             if (e.Parameters != null)
             {
@@ -204,11 +207,11 @@ namespace SuiteValue.UI.WP8
                 if (NavigationContext.QueryString.ContainsKey("ViewModelId"))
                 {
                     var id = NavigationContext.QueryString["ViewModelId"];
-                    if (PhoneApplicationService.Current.State.ContainsKey(id))
+                    if (NavigationViewModelBase.NavigationState.ContainsKey(id))
                     {
 
-                        ViewModel = PhoneApplicationService.Current.State[id] as NavigationViewModelBase;
-                        PhoneApplicationService.Current.State.Remove(id);
+                        ViewModel = NavigationViewModelBase.NavigationState[id] as NavigationViewModelBase;
+                        NavigationViewModelBase.NavigationState.Remove(id);
                     }
                 }
             }
@@ -216,10 +219,10 @@ namespace SuiteValue.UI.WP8
             {
                 RegisterViewModel(ViewModel as INavigationViewModel);
                 IDictionary<string, string> parameters;
-                if (PhoneApplicationService.Current.State.ContainsKey("back_params"))
+                if (NavigationViewModelBase.NavigationState.ContainsKey("back_params"))
                 {
-                    parameters = PhoneApplicationService.Current.State["back_params"] as IDictionary<string, string>;
-                    PhoneApplicationService.Current.State.Remove("back_params");
+                    parameters = NavigationViewModelBase.NavigationState["back_params"] as IDictionary<string, string>;
+                    NavigationViewModelBase.NavigationState.Remove("back_params");
                 }
                 else parameters = NavigationContext.QueryString;
                 (ViewModel as INavigationViewModel).OnNavigatedTo(e.NavigationMode, parameters, e.IsNavigationInitiator);
@@ -251,5 +254,7 @@ namespace SuiteValue.UI.WP8
             }
             base.OnBackKeyPress(e);
         }
+
+        protected bool AlwaysNavigateWhenUsingTheSameAddress { get; set; }
     }
 }

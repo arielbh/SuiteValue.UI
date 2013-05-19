@@ -107,8 +107,15 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>AppResources.resx</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\PartViewModel.cs" />
     <Compile Include="ViewModels\Test2ViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
+    <Compile Include="Views\PartView.xaml.cs">
+      <DependentUpon>PartView.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\PartViewLandscape.xaml.cs">
+      <DependentUpon>PartViewLandscape.xaml</DependentUpon>
+    </Compile>
     <Compile Include="Views\Test3View.xaml.cs">
       <DependentUpon>Test3View.xaml</DependentUpon>
     </Compile>
@@ -125,6 +132,14 @@
       <Generator>MSBuild:Compile</Generator>
     </ApplicationDefinition>
     <Page Include="MainPage.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PartView.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\PartViewLandscape.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

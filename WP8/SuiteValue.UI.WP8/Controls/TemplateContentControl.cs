@@ -1,6 +1,9 @@
-﻿using System.Windows;
+﻿using System;
+using System.Windows;
 using System.Windows.Controls;
+using Microsoft.Phone.Controls;
 using SuiteValue.UI.WP8.Extensions;
+using SuiteValue.UI.WP8.Helpers;
 
 namespace SuiteValue.UI.WP8.Controls
 {
@@ -22,12 +25,18 @@ namespace SuiteValue.UI.WP8.Controls
                 return;
             }
 
+            var key = GetKey(newContent);
+            ContentTemplate = (DataTemplate)Application.Current.Resources[key];
+        }
+
+        private string GetKey(object newContent)
+        {
             string key = newContent.GetType().Name;
             if (!string.IsNullOrEmpty(Suffix))
             {
                 key = key + Suffix;
             }
-            ContentTemplate = (DataTemplate)Application.Current.Resources[key];
+            return key;
         }
 
         public string Suffix
@@ -55,7 +64,37 @@ namespace SuiteValue.UI.WP8.Controls
 
 
 
+        public bool EnableOrientationSupport
+        {
+            get { return (bool)GetValue(EnableOrientationSupportProperty); }
+            set { SetValue(EnableOrientationSupportProperty, value); }
+        }
 
+        // Using a DependencyProperty as the backing store for EnableOrientationSupport.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EnableOrientationSupportProperty =
+            DependencyProperty.Register("EnableOrientationSupport", typeof(bool), typeof(TemplateContentControl), new PropertyMetadata(false, EnableOrientationSupportChanged));
 
+        private static void EnableOrientationSupportChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            (d as TemplateContentControl).UpdateEnableOrientationSupport((bool)e.NewValue);
+        }
+
+        private void UpdateEnableOrientationSupport(bool isEnabledOrientationSupport)
+        {
+            OrientationHelper.SetIsActive(this, isEnabledOrientationSupport);
+            OrientationHelper.SetPageOrientationCallback(this, HandleOrientationChange);
+        }
+
+        private void HandleOrientationChange(PageOrientation pageOrientation)
+        {
+            if (Content == null) return;
+            if (Content is UIElement) return;
+            var key = GetKey(Content);
+            if (pageOrientation == PageOrientation.Landscape)
+            {
+                key += "_landscape";
+            }
+            ContentTemplate = (DataTemplate)Application.Current.Resources[key];
+        }
     }
 }

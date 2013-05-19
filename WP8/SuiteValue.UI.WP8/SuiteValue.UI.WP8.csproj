@@ -137,9 +137,9 @@
     <Compile Include="Extensions\DataTemplateSelector.cs" />
     <Compile Include="Extensions\HttpExtensions.cs" />
     <Compile Include="Extensions\LayoutTransformer.cs" />
+    <Compile Include="Helpers\OrientationHelper.cs" />
     <Compile Include="INavigationViewModel.cs" />
     <Compile Include="INavigator.cs" />
-    <Compile Include="Model\Group.cs" />
     <Compile Include="NavigationEventArgs.cs" />
     <Compile Include="NavigationPage.cs" />
     <Compile Include="NavigationViewModelBase.cs" />

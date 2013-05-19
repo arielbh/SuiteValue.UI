@@ -40,11 +40,19 @@
                                     <Storyboard>
                                         <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="ImageContent" d:IsOptimized="True"/>
                                         <DoubleAnimation Duration="0" To="1" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="AnnotateContent" d:IsOptimized="True"/>
+                                        <DoubleAnimation Duration="1" To="0" Storyboard.TargetProperty="(UIElement.Opacity)" Storyboard.TargetName="tempContent" d:IsOptimized="True"/>
+                                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="tempContent">
+                                            <DiscreteObjectKeyFrame KeyTime="0:0:1">
+                                                <DiscreteObjectKeyFrame.Value>
+                                                    <Visibility>Collapsed</Visibility>
+                                                </DiscreteObjectKeyFrame.Value>
+                                            </DiscreteObjectKeyFrame>
+                                        </ObjectAnimationUsingKeyFrames>
                                     </Storyboard>
                                 </VisualState>
                             </VisualStateGroup>
                         </VisualStateManager.VisualStateGroups>
-                        <ContentControl Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
+                        <ContentControl x:Name="tempContent" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
                         <Image x:Name="ImageContent" Source="{TemplateBinding Source}" Stretch="{TemplateBinding Stretch}" Opacity="0" />
                         <Image x:Name="AnnotateContent" Margin="{TemplateBinding AnnotationMargin}" Stretch="Fill" Source="{TemplateBinding AnnotationSource}"
                                Visibility="{TemplateBinding ShowAnnotation}" Width="{TemplateBinding AnnotationWidth}" Height="{TemplateBinding AnnotationWidth}" HorizontalAlignment="Right" VerticalAlignment="Top"/>

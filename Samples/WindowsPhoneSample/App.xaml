@@ -3,11 +3,18 @@
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
-    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone">
+    xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
+    xmlns:views="clr-namespace:WindowsPhoneSample.Views">
 
     <!--Application Resources-->
     <Application.Resources>
         <local:LocalizedStrings xmlns:local="clr-namespace:WindowsPhoneSample" x:Key="LocalizedStrings"/>
+        <DataTemplate x:Key="PartViewModel">
+            <views:PartView/>
+        </DataTemplate>
+        <DataTemplate x:Key="PartViewModel_landscape">
+            <views:PartViewLandscape/>
+        </DataTemplate>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

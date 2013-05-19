@@ -8,25 +8,30 @@
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
     xmlns:wp8="clr-namespace:SuiteValue.UI.WP8;assembly=SuiteValue.UI.WP8"
     xmlns:controls="clr-namespace:SuiteValue.UI.WP8.Controls;assembly=SuiteValue.UI.WP8"
+    xmlns:helpers="clr-namespace:SuiteValue.UI.WP8.Helpers;assembly=SuiteValue.UI.WP8"
+    xmlns:views="clr-namespace:WindowsPhoneSample.Views"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
-    SupportedOrientations="Portrait" Orientation="Portrait"
+    SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True">
+    shell:SystemTray.IsVisible="True" helpers:OrientationHelper.IsActive="True" helpers:OrientationHelper.PageOrientationCallback="{Binding Callback}">
+    
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="*"/>
+            <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
 
         <!--TitlePanel contains the name of the application and page title-->
         <StackPanel Grid.Row="0" Margin="12,17,0,28">
             <TextBlock Text="MY APPLICATION" Style="{StaticResource PhoneTextNormalStyle}"/>
             <TextBlock Text="Test 1" Margin="9,-7,0,0" Style="{StaticResource PhoneTextTitle1Style}"/>
-        </StackPanel>
+        </StackPanel>                                                                               
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
@@ -38,6 +43,8 @@
                 <ToggleButton IsChecked="{Binding SearchVisibility, Mode=TwoWay}" Content="search visibility" />
             </StackPanel>            
         </Grid>
+        
+        <controls:TemplateContentControl Content="{Binding PartViewModel}" Grid.Row="2" EnableOrientationSupport="True"/>
     </Grid>
 
     <controls:PhoneApplicationPage.ApplicationBar>

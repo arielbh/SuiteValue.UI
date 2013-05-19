@@ -43,6 +43,7 @@
     <Compile Include="DelegateCommand.cs" />
     <Compile Include="Helpers\DesignerPlatformLibrary.cs" />
     <Compile Include="Helpers\DesignerLibrary.cs" />
+    <Compile Include="Model\Group.cs" />
     <Compile Include="PropertyChanging\PropertyChangingEventArgs.cs" />
     <Compile Include="PropertyChanging\INotifyPropertyChanging.cs" />
     <Compile Include="NotifyObject.cs" />
