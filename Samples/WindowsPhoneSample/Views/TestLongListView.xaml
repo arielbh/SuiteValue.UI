@@ -10,70 +10,28 @@
     xmlns:behaviors="clr-namespace:SuiteValue.UI.WP8.Behaviors;assembly=SuiteValue.UI.WP8"
     xmlns:i="clr-namespace:System.Windows.Interactivity;assembly=System.Windows.Interactivity"
     xmlns:ec="clr-namespace:Microsoft.Expression.Interactivity.Core;assembly=Microsoft.Expression.Interactions"
+    xmlns:converters="clr-namespace:SuiteValue.UI.WP8.Converters;assembly=SuiteValue.UI.WP8"
+    xmlns:controls="clr-namespace:SuiteValue.UI.WP8.Controls;assembly=SuiteValue.UI.WP8"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
     FontSize="{StaticResource PhoneFontSizeNormal}"
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="Portrait" Orientation="Portrait"
     mc:Ignorable="d"
     shell:SystemTray.IsVisible="True">
+    <wp8:NavigationPage.Resources>
+        <converters:EmptyConverter x:Key="EmptyConverter"/>
+    </wp8:NavigationPage.Resources>
 
 
     <!--LayoutRoot is the root grid where all page content is placed-->
     <Grid x:Name="LayoutRoot" Background="Transparent">
-        <i:Interaction.Behaviors>
-            <ec:DataStateBehavior Value="True" TrueState="Selected" FalseState="None" Binding="{Binding IsSelected}"/>
-        </i:Interaction.Behaviors>
-        <VisualStateManager.VisualStateGroups>
-            <VisualStateGroup>
-                <VisualState x:Name="None"/>
-                <VisualState x:Name="Selected">
-                    <!--<Storyboard>
-                                    <ColorAnimation To="Red" Storyboard.TargetProperty="Background" Storyboard.TargetName="border" />
-                                </Storyboard>-->
-                    <Storyboard>
-                        <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="header">
-                            <DiscreteObjectKeyFrame KeyTime="0">
-                                <DiscreteObjectKeyFrame.Value>
-                                    <Visibility>Collapsed</Visibility>
-                                </DiscreteObjectKeyFrame.Value>
-                            </DiscreteObjectKeyFrame>
-                        </ObjectAnimationUsingKeyFrames>
-                    </Storyboard>
-                </VisualState>
-            </VisualStateGroup>
-        </VisualStateManager.VisualStateGroups>
         <Grid.Resources>
+     
             <DataTemplate x:Key="ItemTemplate">
-                <Grid>
-                    <i:Interaction.Behaviors>
-                        <ec:DataStateBehavior Value="True" TrueState="Selected" FalseState="None" Binding="{Binding IsSelected}"/>
-                    </i:Interaction.Behaviors>
-                    <VisualStateManager.VisualStateGroups>
-                        <VisualStateGroup>
-                            <VisualState x:Name="None"/>
-                            <VisualState x:Name="Selected">
-                                <!--<Storyboard>
-                                    <ColorAnimation To="Red" Storyboard.TargetProperty="Background" Storyboard.TargetName="border" />
-                                </Storyboard>-->
-                                <Storyboard>
-                                    <ObjectAnimationUsingKeyFrames Storyboard.TargetProperty="(UIElement.Visibility)" Storyboard.TargetName="border">
-                                        <DiscreteObjectKeyFrame KeyTime="0">
-                                            <DiscreteObjectKeyFrame.Value>
-                                                <Visibility>Collapsed</Visibility>
-                                            </DiscreteObjectKeyFrame.Value>
-                                        </DiscreteObjectKeyFrame>
-                                    </ObjectAnimationUsingKeyFrames>
-                                </Storyboard>
-                            </VisualState>
-                        </VisualStateGroup>
-                    </VisualStateManager.VisualStateGroups>
-                    <Border x:Name="border" Background="RoyalBlue">
-    
-                        <TextBlock Text="{Binding Name}" Foreground="Black" Style="{StaticResource PhoneTextTitle2Style}"/>
-                    </Border>
-                </Grid>
-           
+                <controls:SelectionContentControl HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"
+                    Content="{Binding}"  />
             </DataTemplate>
+       
         </Grid.Resources>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>

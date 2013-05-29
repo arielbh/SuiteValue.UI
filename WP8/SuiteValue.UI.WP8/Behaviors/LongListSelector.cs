@@ -1,7 +1,9 @@
 ﻿using System.Collections.Generic;
+using System.Diagnostics;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Media;
+using SuiteValue.UI.WP8.Controls;
 
 namespace SuiteValue.UI.WP8.Behaviors
 {
@@ -30,42 +32,7 @@ namespace SuiteValue.UI.WP8.Behaviors
         {
             var selector = (LongListSelector)d;
             selector.SelectedItem = e.NewValue;
-            //var container = GetItemsRecursive(selector, e.NewValue);
-            //if (container is ContentPresenter)
-            //{
-            //    VisualStateManager.GoToState((container as ContentPresenter).Content as Control, "Selected", true);
-                
-            //}
-            //else
-            //{
-            //    VisualStateManager.GoToState((Control)container, "Selected", true);
-                
-            //}
-            //List<CustomUserControl> userControlList = new List<CustomUserControl>();
-            //GetItemsRecursive<CustomUserControl>(MyLongListSelector, ref userControlList);
-
-            //if (e.AddedItems.Count > 0 && e.AddedItems[0] != null)
-            //{
-            //    foreach (CustomUserControl userControl in userControlList)
-            //    {
-            //        if (e.AddedItems[0].Equals(userControl.DataContext))
-            //        {
-            //            VisualStateManager.GoToState(userControl, "Selected", true);
-            //        }
-            //    }
-            //}
-
-            //if (e.RemovedItems.Count > 0 && e.RemovedItems[0] != null)
-            //{
-            //    foreach (CustomUserControl userControl in userControlList)
-            //    {
-            //        if (e.RemovedItems[0].Equals(userControl.DataContext))
-            //        {
-            //            VisualStateManager.GoToState(userControl, "Normal", true);
-            //        }
-            //    }
-
-            //}
+            GetItemsRecursive(selector, e.NewValue);
         }
 
         public new object SelectedItem
@@ -75,24 +42,27 @@ namespace SuiteValue.UI.WP8.Behaviors
         }
 
 
-        public static DependencyObject GetItemsRecursive(DependencyObject lb, object item)
+        public static void GetItemsRecursive(DependencyObject lb, object item)
         {
             var childrenCount = VisualTreeHelper.GetChildrenCount(lb);
-
+            var c = lb as SelectionContentControl;
+            if (c != null)
+            {
+                if (c.Content == item)
+                {
+                    c.Selected(true);
+                }
+                else
+                {
+                    c.Selected(false);
+                }
+            }
             for (int i = 0; i < childrenCount; i++)
             {
                 var child = VisualTreeHelper.GetChild(lb, i);
-                var frameworkElement = child as FrameworkElement;
-                if (frameworkElement != null && frameworkElement.DataContext == item)
-                {
-                    return frameworkElement as DependencyObject;
-                }
-
-
-                return GetItemsRecursive(child, item);
+                Debug.WriteLine(child.ToString());
+                GetItemsRecursive(child, item);
             }
-
-            return null;
         }
     }
 

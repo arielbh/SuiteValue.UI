@@ -133,7 +133,9 @@
     <Compile Include="Controls\ApplicationBarMenuItem.cs" />
     <Compile Include="Controls\PhoneApplicationPage.cs" />
     <Compile Include="Controls\PlaceholderImage.cs" />
+    <Compile Include="Controls\SelectionContentControl.cs" />
     <Compile Include="Controls\TemplateContentControl.cs" />
+    <Compile Include="Converters\EmptyConverter.cs" />
     <Compile Include="Extensions\DataTemplateSelector.cs" />
     <Compile Include="Extensions\HttpExtensions.cs" />
     <Compile Include="Extensions\LayoutTransformer.cs" />
@@ -161,7 +163,9 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <Folder Include="NewFolder1\" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />

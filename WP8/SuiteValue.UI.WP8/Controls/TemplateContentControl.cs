@@ -96,5 +96,6 @@ namespace SuiteValue.UI.WP8.Controls
             }
             ContentTemplate = (DataTemplate)Application.Current.Resources[key];
         }
+
     }
 }

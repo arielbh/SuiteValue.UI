@@ -10,6 +10,7 @@ namespace SuiteValue.UI.WP8
         event EventHandler<EventArgs> RequestNavigateBack;
         event EventHandler<NavigationBackEventArgs> RequestNavigateBackTo;
         event EventHandler<EventArgs> RequestUnregister;
+        
         bool RegisteredForNavigation { get; set; }
         bool KeepRegistrationsAlive { get; set; }
        

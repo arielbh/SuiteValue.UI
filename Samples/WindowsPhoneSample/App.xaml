@@ -15,6 +15,16 @@
         <DataTemplate x:Key="PartViewModel_landscape">
             <views:PartViewLandscape/>
         </DataTemplate>
+        <DataTemplate x:Key="Employee">
+            <Border x:Name="border" Background="RoyalBlue">
+                <TextBlock Text="{Binding Name}" Foreground="Black" Style="{StaticResource PhoneTextTitle2Style}"/>
+            </Border>
+        </DataTemplate>
+        <DataTemplate x:Key="EmployeeSelected">
+            <Border x:Name="border" Background="Red">
+                <TextBlock Text="{Binding Name}" Foreground="Black" Style="{StaticResource PhoneTextTitle2Style}"/>
+            </Border>
+        </DataTemplate>
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

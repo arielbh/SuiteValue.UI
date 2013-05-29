@@ -36,7 +36,9 @@ namespace WindowsPhoneSample.ViewModels
                 return _navigateCommand ?? (_navigateCommand = new DelegateCommand(
                                                      () =>
                                                      {
-                                                         NavigateBackTo(Payload, new Dictionary<string, string>() {{"Test", "Test"}});
+                                                         State = "Really";
+                                                         NavigateBack();
+                                                         //NavigateBackTo(Payload, new Dictionary<string, string>() {{"Test", "Test"}});
 
                                                          //var vm = new Test3ViewModel();
                                                          //vm.State = "YoYo";

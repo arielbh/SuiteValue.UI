@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Threading.Tasks;
 
 namespace SuiteValue.UI.WP8
 {
@@ -15,6 +16,19 @@ namespace SuiteValue.UI.WP8
             this.ViewUri = viewUri;
             this.Parameters = parameters;
         }
+    }
+
+    public class NavigateWithWaitEventArgs : NavigationEventArgs
+    {
+        public NavigateWithWaitEventArgs(string viewUri, NavigationViewModelBase viewModel, IDictionary<string, string> parameters, TaskCompletionSource<object> waitHandle)
+            : base(viewUri, parameters)
+        {
+            ViewModel = viewModel;
+            WaitHandle = waitHandle;
+        }
+
+        public NavigationViewModelBase ViewModel { get; set; }
+        public TaskCompletionSource<object> WaitHandle { get; private set; }
     }
 
     public class NavigationBackEventArgs : EventArgs

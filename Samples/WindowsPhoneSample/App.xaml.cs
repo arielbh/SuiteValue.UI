@@ -59,7 +59,7 @@ namespace WindowsPhoneSample
             }
 
             StatisticsHelper.OnMemoryUpdated += StatisticsHelper_OnMemoryUpdated;
-            StatisticsHelper.EnableMemoryOutput();
+            //StatisticsHelper.EnableMemoryOutput();
 
         }
 

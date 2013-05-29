@@ -20,6 +20,19 @@
         </Setter>
     </Style>
 
+    <Style TargetType="controls2:SelectionContentControl">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="controls2:SelectionContentControl">
+                    
+                        <ContentPresenter
+                            Content="{TemplateBinding Content}"
+                            ContentTemplate="{TemplateBinding ContentTemplate}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
 
     <Style TargetType="controls2:PlaceholderImage">
         <Setter Property="Template">
@@ -61,4 +74,5 @@
             </Setter.Value>
         </Setter>
     </Style>
+    
 </ResourceDictionary>

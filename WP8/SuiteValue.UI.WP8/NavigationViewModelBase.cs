@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Threading.Tasks;
 using System.Windows.Navigation;
 using Microsoft.Phone.Shell;
 
@@ -10,16 +11,19 @@ namespace SuiteValue.UI.WP8
         internal static Dictionary<string, object> NavigationState = new Dictionary<string, object>();
 
         private string _viewHint;
+        private bool _isInWaiting;
+        private TaskCompletionSource<IDictionary<string, string>> _taskCompletionSource;
         public event EventHandler<NavigationEventArgs> RequestNavigateTo;
         public event EventHandler<EventArgs> RequestNavigateBack;
         public event EventHandler<NavigationBackEventArgs> RequestNavigateBackTo;
         public event EventHandler<EventArgs> RequestUnregister;
 
-
         public bool RegisteredForNavigation { get; set; }
 
         protected virtual void OnNavigatedTo(NavigationMode mode, IDictionary<string, string> parameter, bool isNavigationInitiator)
         {
+            
+
         }
 
         protected virtual bool OnNavigatingFrom(NavigationMode mode)
@@ -120,8 +124,28 @@ namespace SuiteValue.UI.WP8
         }
 
 
+        protected virtual Task<IDictionary<string, string>> NavigateAndWait<T>(T viewModel, IDictionary<string, string> parameters = null) where T : NavigationViewModelBase
+        {
+            _isInWaiting = true;
+            _taskCompletionSource = new TaskCompletionSource<IDictionary<string, string>>();
+            Navigate(viewModel, parameters);
+            return _taskCompletionSource.Task;
+        }
+
+        
+
+
         void INavigationViewModel.OnNavigatedTo(NavigationMode mode, IDictionary<string, string> parameter, bool isNavigationInitiator)
         {
+            if (mode == NavigationMode.Back)
+            {
+                if (_isInWaiting)
+                {
+
+                    _taskCompletionSource.SetResult(parameter);
+                    _isInWaiting = false;
+                }
+            }
             OnNavigatedTo(mode, parameter, isNavigationInitiator);
         }
 
