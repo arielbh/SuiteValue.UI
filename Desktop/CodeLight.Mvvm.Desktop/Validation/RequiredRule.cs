@@ -12,7 +12,7 @@ namespace CodeValue.CodeLight.Mvvm.Validation
                                                                    var type = o.GetType();
                                                                    var prop = type.GetProperty(s);
                                                                    var value = prop.GetValue(o, null);
-                                                                   return value != null;
+                                                                   return value == null;
                                                                };
 
 

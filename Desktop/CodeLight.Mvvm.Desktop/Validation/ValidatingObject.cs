@@ -24,25 +24,19 @@ namespace CodeValue.CodeLight.Mvvm.Validation
         StringBuilder _errorsBuilder = new StringBuilder(); 
         private readonly List<Rule> _rules = new List<Rule>();
 
-        //public virtual bool IsValid
-        //{
-        //    get { return string.IsNullOrEmpty(this.Error); }
-        //}
 
-        private bool _isValid;
-
-        public virtual bool IsValid
+        public bool IsValid
         {
-            get { return _isValid; }
-            set
-            {
-                if (value != _isValid)
-                {
-                    _isValid = value;
-                    OnPropertyChanged(() => IsValid);
-                }
-            }
+            get { return _rules.All(r => r.IsValid); }
+       
         }
+
+        private bool UpdateState()
+        {
+            return string.IsNullOrEmpty(Error);
+        }
+
+  
 
         public virtual string Error
         {
@@ -60,6 +54,7 @@ namespace CodeValue.CodeLight.Mvvm.Validation
             get
             {
                 _errorsBuilder.Clear();
+                var valid = true;
 
                 propertyName = this.CleanString(propertyName);
                 foreach (Rule rule in this.GetBrokenRules(propertyName))
@@ -67,6 +62,7 @@ namespace CodeValue.CodeLight.Mvvm.Validation
                     if (propertyName == string.Empty || rule.PropertyName == propertyName)
                     {
                         _errorsBuilder.AppendLine(rule.Description);
+                        valid = false;
                     }
                 }
 #if SILVERLIGHT
@@ -84,35 +80,38 @@ namespace CodeValue.CodeLight.Mvvm.Validation
                     foreach (var error in errorInfos)
                     {
                         _errorsBuilder.AppendLine(error);
-
+                        valid = false;
                     }
                 }
 #endif
                 string str2 = _errorsBuilder.ToString().Trim();
                 if (str2.Length == 0)
                     str2 = (string) null;
-                IsValid = str2 == null;
+                //if (valid != IsValid)
+                //{
+                //    UpdateState();
+                //}
                 return str2;
             }
         }
 
-        public virtual ReadOnlyCollection<Rule> GetBrokenRules()
+        protected virtual ReadOnlyCollection<Rule> GetBrokenRules()                                                        
         {
             return this.GetBrokenRules(string.Empty);
         }
 
-        public virtual ReadOnlyCollection<Rule> GetBrokenRules(string property)
+        protected virtual ReadOnlyCollection<Rule> GetBrokenRules(string property)
         {
             property = this.CleanString(property);
-            List<Rule> list = new List<Rule>();
+            var list = new List<Rule>();
             foreach (Rule rule in this._rules)
             {
                 if (rule.PropertyName == property || property == string.Empty)
                 {
-                    bool flag = rule.ValidateRule((object) this);
+                    bool isRuleBroken = rule.Validate((object) this);
                     Debug.WriteLine(DateTime.Now.ToLongTimeString() + ": Validating the rule: '" + rule.ToString() +
-                                    "' on object '" + this.ToString() + "'. Result = " + (!flag ? "Valid" : "Broken"));
-                    if (flag)
+                                    "' on object '" + this.ToString() + "'. Result = " + (!isRuleBroken ? "Valid" : "Broken"));
+                    if (isRuleBroken)
                         list.Add(rule);
                 }
             }
@@ -122,11 +121,20 @@ namespace CodeValue.CodeLight.Mvvm.Validation
 
         public void AddRule(Rule newRule)
         {
+            newRule.PropertyChanged += newRule_PropertyChanged;
             this._rules.Add(newRule);
         }
 
+        void newRule_PropertyChanged(object sender, PropertyChangedEventArgs e)
+        {
+            OnPropertyChanged(() => IsValid);
+        }
+
+
         public void RemoveRule(Rule rule)
         {
+            rule.PropertyChanged -= newRule_PropertyChanged;
+
             this._rules.Remove(rule);
         }
 

@@ -79,10 +79,11 @@ namespace WindowsPhoneSample.ViewModels
                 return _navigateCommand ?? (_navigateCommand = new DelegateCommand(
                                                      () =>
                                                      {
-                                                         Test2ViewModel vm = new Test2ViewModel();
-                                                         vm.State = "YoYo";
-                                                         vm.Payload = this;
-                                                         Navigate<Test2ViewModel>(vm);
+                                                         //Test2ViewModel vm = new Test2ViewModel();
+                                                         //vm.State = "YoYo";
+                                                         //vm.Payload = this;
+                                                         //Navigate<Test2ViewModel>(vm);
+                                                         Navigate(new TestValidationViewModel());
                                                      }));
             }
         }

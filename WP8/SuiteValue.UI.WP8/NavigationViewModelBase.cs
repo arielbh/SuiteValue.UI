@@ -149,6 +149,12 @@ namespace SuiteValue.UI.WP8
         {
             Navigate(viewModel, parameters);
         }
+
+        void INavigator.NavigateBack(IDictionary<string, string> parameters)
+        {
+            NavigateBack(parameters);
+        }
+
         public bool KeepRegistrationsAlive { get; set; }
 
     }           

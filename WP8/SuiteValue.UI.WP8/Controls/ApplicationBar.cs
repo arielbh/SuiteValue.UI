@@ -61,28 +61,35 @@ namespace SuiteValue.UI.WP8.Controls
 
         private void UpdateItemsSource(List<ApplicationBarIconButton> buttons, FlowDirection flowDirection)
         {
-            if (buttons != null)
+            try
             {
-                if (buttons.Count > 0)
+                if (buttons != null)
                 {
-                    if (flowDirection == FlowDirection.RightToLeft)
-                        buttons.Reverse();
+                    if (buttons.Count > 0)
+                    {
+                        if (flowDirection == FlowDirection.RightToLeft)
+                            buttons.Reverse();
 
+                        Buttons.Dettach(SysAppBar);
+                        Buttons.Clear();
+                        foreach (ApplicationBarIconButton button in buttons)
+                        {
+                            Buttons.Add(button);
+                        }
+
+                        Buttons.Attach(DataContext, SysAppBar);
+                    }
+                }
+                else
+                {
                     Buttons.Dettach(SysAppBar);
                     Buttons.Clear();
-                    foreach (ApplicationBarIconButton button in buttons)
-                    {
-                        Buttons.Add(button);
-                    }
-
                     Buttons.Attach(DataContext, SysAppBar);
                 }
             }
-            else
+            catch (Exception e)
             {
-                Buttons.Dettach(SysAppBar);
-                Buttons.Clear();
-                Buttons.Attach(DataContext, SysAppBar);
+                Console.WriteLine(e);
             }
         }
 

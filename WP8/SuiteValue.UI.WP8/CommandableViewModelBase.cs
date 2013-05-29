@@ -1,5 +1,7 @@
 ﻿using System.Collections.Generic;
-using SuiteValue.UI.WP8.Controls;
+using Microsoft.Phone.Shell;
+using ApplicationBarIconButton = SuiteValue.UI.WP8.Controls.ApplicationBarIconButton;
+using ApplicationBarMenuItem = SuiteValue.UI.WP8.Controls.ApplicationBarMenuItem;
 
 namespace SuiteValue.UI.WP8
 {
@@ -31,6 +33,21 @@ namespace SuiteValue.UI.WP8
                 {
                     _showAppBar = value;
                     OnPropertyChanged(() => ShowAppBar);
+                }
+            }
+        }
+
+        private ApplicationBarMode _appBarMode;
+
+        public ApplicationBarMode AppBarMode
+        {
+            get { return _appBarMode; }
+            set
+            {
+                if (value != _appBarMode)
+                {
+                    _appBarMode = value;
+                    OnPropertyChanged(() => AppBarMode);
                 }
             }
         }
@@ -72,6 +89,8 @@ namespace SuiteValue.UI.WP8
                 }
             }
         }  
+
+
 
         public virtual void Activate()
         {

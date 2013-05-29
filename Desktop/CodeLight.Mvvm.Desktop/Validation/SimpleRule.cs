@@ -29,7 +29,7 @@ namespace CodeValue.CodeLight.Mvvm.Validation
             this.RuleDelegate = ruleDelegate;
         }
 
-        public override bool ValidateRule(object domainObject)
+        protected override bool ValidateRule(object domainObject)
         {
             return this.RuleDelegate(domainObject);
         }
@@ -57,7 +57,7 @@ namespace CodeValue.CodeLight.Mvvm.Validation
             this.RuleDelegate = ruleDelegate;
         }
 
-        public override bool ValidateRule(object domainObject)
+        protected override bool ValidateRule(object domainObject)
         {
             return this.RuleDelegate((T)domainObject);
         }

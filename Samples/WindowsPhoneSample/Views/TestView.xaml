@@ -15,7 +15,7 @@
     Foreground="{StaticResource PhoneForegroundBrush}"
     SupportedOrientations="PortraitOrLandscape" Orientation="Portrait"
     mc:Ignorable="d"
-    shell:SystemTray.IsVisible="True" helpers:OrientationHelper.IsActive="True" helpers:OrientationHelper.PageOrientationCallback="{Binding Callback}">
+    shell:SystemTray.IsVisible="True" >
     
 
     <!--LayoutRoot is the root grid where all page content is placed-->
@@ -44,7 +44,7 @@
             </StackPanel>            
         </Grid>
         
-        <controls:TemplateContentControl Content="{Binding PartViewModel}" Grid.Row="2" EnableOrientationSupport="True"/>
+        <controls:TemplateContentControl Content="{Binding PartViewModel}" Grid.Row="2"  />
     </Grid>
 
     <controls:PhoneApplicationPage.ApplicationBar>

@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Windows;
 using System.Windows.Controls;
+using System.Windows.Media;
 using Microsoft.Phone.Controls;
 #if WINDOWS_PHONE
 
@@ -87,6 +88,7 @@ namespace SuiteValue.UI.WP8.Helpers
         private static void SetupOrientationAwareControl(Control control, bool isActive)
         {
 #if WINDOWS_PHONE
+
             var page = FindParentPage(control);
             if (page == null)
                 return;
@@ -186,14 +188,21 @@ namespace SuiteValue.UI.WP8.Helpers
 
         private static PhoneApplicationPage FindParentPage(FrameworkElement el)
         {
+            //if (el is UserControl)
+            //{
+            //    var frame = Application.Current.RootVisual as PhoneApplicationFrame;
+            //    return frame.Content as PhoneApplicationPage;
+            //}
             FrameworkElement parent = el;
             while (parent != null)
             {
                 if (parent is PhoneApplicationPage)
                     return parent as PhoneApplicationPage;
-                parent = parent.Parent as FrameworkElement;
+                //parent = parent.Parent as FrameworkElement;
+                parent = VisualTreeHelper.GetParent(parent) as FrameworkElement;
             }
-            return null;
+            var frame = Application.Current.RootVisual as PhoneApplicationFrame;
+            return frame.Content as PhoneApplicationPage;
         }
 
         private static void PageOnOrientationChanged(object sender, OrientationChangedEventArgs e)
