@@ -20,11 +20,11 @@
                 <TextBlock Text="{Binding Name}" Foreground="Black" Style="{StaticResource PhoneTextTitle2Style}"/>
             </Border>
         </DataTemplate>
-        <DataTemplate x:Key="EmployeeSelected">
+        <!--<DataTemplate x:Key="EmployeeSelected">
             <Border x:Name="border" Background="Red">
                 <TextBlock Text="{Binding Name}" Foreground="Black" Style="{StaticResource PhoneTextTitle2Style}"/>
             </Border>
-        </DataTemplate>
+        </DataTemplate>-->
     </Application.Resources>
 
     <Application.ApplicationLifetimeObjects>

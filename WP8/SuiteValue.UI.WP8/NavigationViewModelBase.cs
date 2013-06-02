@@ -124,7 +124,8 @@ namespace SuiteValue.UI.WP8
         }
 
 
-        protected virtual Task<IDictionary<string, string>> NavigateAndWait<T>(T viewModel, IDictionary<string, string> parameters = null) where T : NavigationViewModelBase
+        protected virtual Task<IDictionary<string, string>> NavigateAndWait<T>(T viewModel, IDictionary<string, string> parameters = null) 
+            where T : NavigationViewModelBase
         {
             _isInWaiting = true;
             _taskCompletionSource = new TaskCompletionSource<IDictionary<string, string>>();
@@ -177,6 +178,11 @@ namespace SuiteValue.UI.WP8
         void INavigator.NavigateBack(IDictionary<string, string> parameters)
         {
             NavigateBack(parameters);
+        }
+
+        Task<IDictionary<string, string>> INavigator.NavigateAndWait<T>(T viewModel, IDictionary<string, string> parameters) 
+        {
+            return NavigateAndWait(viewModel, parameters);
         }
 
         public bool KeepRegistrationsAlive { get; set; }

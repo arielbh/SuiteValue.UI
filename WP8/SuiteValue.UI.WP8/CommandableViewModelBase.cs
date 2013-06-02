@@ -90,9 +90,12 @@ namespace SuiteValue.UI.WP8
             }
         }  
 
-
-
         public virtual void Activate()
+        {
+            
+        }
+
+        public virtual void Deactivate()
         {
             
         }

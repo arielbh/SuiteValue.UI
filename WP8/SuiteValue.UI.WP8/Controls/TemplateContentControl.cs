@@ -18,7 +18,8 @@ namespace SuiteValue.UI.WP8.Controls
                 ContentTemplate = null;
                 return;
             }
-            if (oldContent == null && ContentTemplate != null) return;
+            if (ContentTemplate != null) return;
+
             if (ContentTemplateSelector != null)
             {
                 ContentTemplate = ContentTemplateSelector.SelectTemplate(newContent, this);

@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Windows;
+using System.Windows.Data;
 using SuiteValue.UI.WP8.Behaviors;
 
 namespace SuiteValue.UI.WP8.Controls
@@ -9,6 +10,23 @@ namespace SuiteValue.UI.WP8.Controls
         public SelectionContentControl()
         {
             ContentTemplateProperty.RegisterForNotification("ContentTemplate", this, (o, e) => Register(o, e));
+            Tap += SelectionContentControl_Tap;
+        }
+
+        void SelectionContentControl_Tap(object sender, System.Windows.Input.GestureEventArgs e)
+        {
+            var item = DataContext;
+
+            if (TappedItem == item)
+            {
+                BindingExpression expression = GetBindingExpression(TappedItemProperty);
+                if (expression != null)
+                {
+                    expression.UpdateSource();
+                }
+            }
+            TappedItem = item;
+            Selected(!IsSelected);
         }
 
         protected override void OnContentChanged(object oldContent, object newContent)
@@ -20,7 +38,7 @@ namespace SuiteValue.UI.WP8.Controls
                 ContentTemplate = null;
                 return;
             }
-            if (oldContent == null && SelectedTemplate != null) return;
+            if (SelectedTemplate != null) return;
             var key = GetKey(newContent);
             SelectedTemplate = (DataTemplate)Application.Current.Resources[key];
         }
@@ -84,5 +102,19 @@ namespace SuiteValue.UI.WP8.Controls
             (d as SelectionContentControl).Selected((bool)e.NewValue);
             
         }
+
+
+
+        public object TappedItem
+        {
+            get { return (object)GetValue(TappedItemProperty); }
+            set { SetValue(TappedItemProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for TappedTappedItemObject.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty TappedItemProperty =
+            DependencyProperty.Register("TappedItem", typeof(object), typeof(SelectionContentControl), new PropertyMetadata(null));
+
+
     }
 }

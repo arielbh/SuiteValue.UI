@@ -131,6 +131,8 @@
     <Compile Include="Controls\ApplicationBarIconButton.cs" />
     <Compile Include="Controls\ApplicationBarItemCollection.cs" />
     <Compile Include="Controls\ApplicationBarMenuItem.cs" />
+    <Compile Include="Controls\ExpanderButton.cs" />
+    <Compile Include="Controls\ExpanderRadio.cs" />
     <Compile Include="Controls\PhoneApplicationPage.cs" />
     <Compile Include="Controls\PlaceholderImage.cs" />
     <Compile Include="Controls\SelectionContentControl.cs" />

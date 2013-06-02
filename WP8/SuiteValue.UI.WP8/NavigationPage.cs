@@ -228,7 +228,14 @@ namespace SuiteValue.UI.WP8
                 (ViewModel as INavigationViewModel).OnNavigatedTo(e.NavigationMode, parameters, e.IsNavigationInitiator);
             }
             base.OnNavigatedTo(e);
+            if (OnFinishedNavigation != null)
+            {
+                OnFinishedNavigation(this, (INavigationViewModel) ViewModel);
+            }
         }
+
+        public Action<NavigationPage, INavigationViewModel>  OnFinishedNavigation { get; set; }
+
         protected override void OnNavigatingFrom(NavigatingCancelEventArgs e)
         {
             if (ViewModel != null)

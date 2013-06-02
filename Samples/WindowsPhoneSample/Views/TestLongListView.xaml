@@ -27,10 +27,10 @@
     <Grid x:Name="LayoutRoot" Background="Transparent">
         <Grid.Resources>
      
-            <DataTemplate x:Key="ItemTemplate">
+            <!--<DataTemplate x:Key="ItemTemplate">
                 <controls:SelectionContentControl HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"
                     Content="{Binding}"  />
-            </DataTemplate>
+            </DataTemplate>-->
        
         </Grid.Resources>
         <Grid.RowDefinitions>
@@ -46,8 +46,87 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <!--<CheckBox IsChecked="{Binding IsSelected, Mode=TwoWay}"/>-->
-            <behaviors:LongListSelector ItemsSource="{Binding Employees}" ItemTemplate="{StaticResource ItemTemplate}" SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}"/>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+                <RowDefinition Height="Auto" />
+            </Grid.RowDefinitions>
+            <controls:ExpanderRadio Target="{Binding ElementName=list}" Content="Click me" IsChecked="True"/>
+            <behaviors:LongListSelector Grid.Row="1" x:Name="list" ItemsSource="{Binding Employees}"  TappedItem="{Binding SelectedEmployee, Mode=TwoWay}">
+                <behaviors:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <controls:SelectionContentControl HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"
+                    Content="{Binding}"  >
+                            <controls:SelectionContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <Border x:Name="border" Background="RoyalBlue" Margin="0,30,0,0">
+                                        <TextBlock Text="{Binding Name}" Foreground="Black" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </controls:SelectionContentControl.ContentTemplate>
+                            <controls:SelectionContentControl.SelectedTemplate>
+                                <DataTemplate>
+                                    <Border x:Name="border" Background="White">
+                                        <TextBlock Text="{Binding Name}" Foreground="Black" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </controls:SelectionContentControl.SelectedTemplate>
+                        </controls:SelectionContentControl>
+                    </DataTemplate>
+                </behaviors:LongListSelector.ItemTemplate>
+            </behaviors:LongListSelector>
+            <controls:ExpanderRadio Target="{Binding ElementName=list2}" Content="Click me 2" Grid.Row="2"/>
+            <behaviors:LongListSelector Grid.Row="3" x:Name="list2" ItemsSource="{Binding Employees}"  SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
+                <behaviors:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <controls:SelectionContentControl HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"
+                    Content="{Binding}"  >
+                            <controls:SelectionContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <Border x:Name="border" Background="RoyalBlue">
+                                        <TextBlock Text="{Binding Name}" Foreground="Black" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </controls:SelectionContentControl.ContentTemplate>
+                            <controls:SelectionContentControl.SelectedTemplate>
+                                <DataTemplate>
+                                    <Border x:Name="border" Background="White">
+                                        <TextBlock Text="{Binding Name}" Foreground="Black" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </controls:SelectionContentControl.SelectedTemplate>
+                        </controls:SelectionContentControl>
+                    </DataTemplate>
+                </behaviors:LongListSelector.ItemTemplate>
+            </behaviors:LongListSelector>
+            <controls:ExpanderRadio Target="{Binding ElementName=list3}" Content="Click me 3"  Grid.Row="4"/>
+            <behaviors:LongListSelector Grid.Row="5" x:Name="list3" ItemsSource="{Binding Employees}"  SelectedItem="{Binding SelectedEmployee, Mode=TwoWay}">
+                <behaviors:LongListSelector.ItemTemplate>
+                    <DataTemplate>
+                        <controls:SelectionContentControl HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"
+                    Content="{Binding}"  >
+                            <controls:SelectionContentControl.ContentTemplate>
+                                <DataTemplate>
+                                    <Border x:Name="border" Background="RoyalBlue">
+                                        <TextBlock Text="{Binding Name}" Foreground="Black" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </controls:SelectionContentControl.ContentTemplate>
+                            <controls:SelectionContentControl.SelectedTemplate>
+                                <DataTemplate>
+                                    <Border x:Name="border" Background="White">
+                                        <TextBlock Text="{Binding Name}" Foreground="Black" Style="{StaticResource PhoneTextTitle2Style}"/>
+                                    </Border>
+                                </DataTemplate>
+                            </controls:SelectionContentControl.SelectedTemplate>
+                        </controls:SelectionContentControl>
+                    </DataTemplate>
+                </behaviors:LongListSelector.ItemTemplate>
+            </behaviors:LongListSelector>
+
         </Grid>
     </Grid>
 
