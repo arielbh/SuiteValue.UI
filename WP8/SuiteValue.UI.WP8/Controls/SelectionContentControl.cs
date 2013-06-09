@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Windows;
 using System.Windows.Data;
+using System.Windows.Media;
 using SuiteValue.UI.WP8.Behaviors;
 
 namespace SuiteValue.UI.WP8.Controls
@@ -11,7 +12,17 @@ namespace SuiteValue.UI.WP8.Controls
         {
             ContentTemplateProperty.RegisterForNotification("ContentTemplate", this, (o, e) => Register(o, e));
             Tap += SelectionContentControl_Tap;
+            SizeChanged += SelectionContentControl_SizeChanged;
         }
+
+        
+
+        void SelectionContentControl_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            child = VisualTreeHelper.GetChild(this, 0);
+        }
+
+
 
         void SelectionContentControl_Tap(object sender, System.Windows.Input.GestureEventArgs e)
         {
@@ -50,8 +61,10 @@ namespace SuiteValue.UI.WP8.Controls
 
         private void Register(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
+            ToggleVisibility();
             if (e.NewValue == SelectedTemplate) return;
             _UnSelectedTemplate = e.NewValue as DataTemplate;
+            
         }
 
         public override void OnApplyTemplate()
@@ -85,6 +98,41 @@ namespace SuiteValue.UI.WP8.Controls
             IsSelected = newValue;
         }
 
+        private void ToggleVisibility()
+        {
+            SizeChanged += g_SizeChanged;
+            var uiElement = child as UIElement;
+            if (uiElement != null)
+                uiElement.Visibility = uiElement.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+        }
+        void g_SizeChanged(object sender, SizeChangedEventArgs e)
+        {
+            SizeChanged -= g_SizeChanged;
+            SizeChanged += g_SizeChanged2;
+            var uiElement = child as UIElement;
+            if (uiElement != null)
+                uiElement.Visibility = uiElement.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        void g_SizeChanged2(object sender, SizeChangedEventArgs e)
+        {
+            SizeChanged -= g_SizeChanged2;
+            SizeChanged += g_SizeChanged3;
+
+            var uiElement = child as UIElement;
+            if (uiElement != null)
+                uiElement.Visibility = uiElement.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+        void g_SizeChanged3(object sender, SizeChangedEventArgs e)
+        {
+            SizeChanged -= g_SizeChanged3;
+            var uiElement = child as UIElement;
+            if (uiElement != null)
+                uiElement.Visibility = uiElement.Visibility == Visibility.Collapsed ? Visibility.Visible : Visibility.Collapsed;
+        }
+
+
         public bool IsSelected
         {
             get { return (bool)GetValue(IsSelectedProperty); }
@@ -115,6 +163,6 @@ namespace SuiteValue.UI.WP8.Controls
         public static readonly DependencyProperty TappedItemProperty =
             DependencyProperty.Register("TappedItem", typeof(object), typeof(SelectionContentControl), new PropertyMetadata(null));
 
-
+        private DependencyObject child;
     }
 }

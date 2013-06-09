@@ -29,8 +29,7 @@
 
         <!--ContentPanel - place additional content here-->
         <Grid x:Name="ContentPanel" Grid.Row="1" Margin="12,0,12,0">
-            <Button Content="Navgiate" Command="{Binding NavigateCommand}"/>
-
+            <TextBlock Style="{StaticResource PhoneTextExtraLargeStyle}" Text="{Binding State}"/>
         </Grid>
     </Grid>
 
