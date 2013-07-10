@@ -1,4 +1,4 @@
-namespace CodeValue.CodeLight.Prism.Localization
+namespace SuiteValue.UI.WPF.Prism.Localization
 {
     public class Locale
     {

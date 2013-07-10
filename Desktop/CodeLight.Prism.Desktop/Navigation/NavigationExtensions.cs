@@ -4,11 +4,11 @@ using System.IO;
 using System.Linq;
 using System.Runtime.Serialization;
 using System.Text;
-using CodeValue.CodeLight.Prism.Extensions;
 using Microsoft.Practices.Prism;
 using Microsoft.Practices.Prism.Regions;
+using SuiteValue.UI.WPF.Prism.Extensions;
 
-namespace CodeValue.CodeLight.Prism.Navigation
+namespace SuiteValue.UI.WPF.Prism.Navigation
 {
     public static class NavigationExtensions
     {

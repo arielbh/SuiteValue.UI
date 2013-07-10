@@ -122,11 +122,13 @@
     </Compile>
     <Compile Include="AsyncViewModelBase.cs" />
     <Compile Include="AwareViewModelBase.cs" />
+    <Compile Include="Behaviors\TextBoxTextBindingUpdate.cs" />
     <Compile Include="Behaviors\CommandVisibilityBehavior.cs" />
     <Compile Include="Behaviors\LongListSelector.cs" />
     <Compile Include="Behaviors\PivotCleanupBehavior.cs" />
     <Compile Include="Behaviors\WebBrowserSourceBehavior.cs" />
     <Compile Include="CommandableViewModelBase.cs" />
+    <Compile Include="Controls\AppBarData.cs" />
     <Compile Include="Controls\ApplicationBar.cs" />
     <Compile Include="Controls\ApplicationBarIconButton.cs" />
     <Compile Include="Controls\ApplicationBarItemCollection.cs" />
@@ -165,9 +167,7 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="NewFolder1\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />

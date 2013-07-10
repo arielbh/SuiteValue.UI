@@ -28,6 +28,25 @@ namespace SuiteValue.UI.WP8.Controls
 
             InitialIndex = -1;
         }
+        internal void Adapt(AppBarData data)
+        {
+            _data = data;
+            data.PropertyChanged += data_PropertyChanged;
+            UpdateFromData();
+        }
+
+        internal virtual void UpdateFromData()
+        {
+            Text = _data.Text;
+            Command = _data.Command;
+            CommandParameter = _data.CommandParameter;
+            IsVisible = _data.IsVisible;    
+        }
+
+        void data_PropertyChanged(object sender, System.ComponentModel.PropertyChangedEventArgs e)
+        {
+            UpdateFromData();
+        }
 
         #endregion
 
@@ -181,6 +200,8 @@ namespace SuiteValue.UI.WP8.Controls
                 typeof(ApplicationBarMenuItem),
                 new PropertyMetadata(null, (d, e) => ((ApplicationBarMenuItem)d).CommandParameterChanged(e.OldValue, e.NewValue)));
 
+        protected AppBarData _data;
+
         private void CommandParameterChanged(object oldParameter, object newParameter)
         {
         }
@@ -217,6 +238,10 @@ namespace SuiteValue.UI.WP8.Controls
                 InitialIndex = -1;
                 Items = null;
                 AppBar = null;
+                if (_data != null)
+                {
+                    _data.PropertyChanged -= data_PropertyChanged;
+                }
 
                 _isAttached = false;
             }

@@ -1,6 +1,6 @@
 using Microsoft.Practices.Prism.Events;
 
-namespace CodeValue.CodeLight.Prism.Localization
+namespace SuiteValue.UI.WPF.Prism.Localization
 {
     /// <summary>
     /// Aggregate event fired when the locale changes.

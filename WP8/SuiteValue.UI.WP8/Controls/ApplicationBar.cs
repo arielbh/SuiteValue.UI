@@ -49,24 +49,23 @@ namespace SuiteValue.UI.WP8.Controls
 
         private static void FlowDirectionChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ApplicationBar bar = d as ApplicationBar;
-            var newButtons = (e.NewValue as IEnumerable);
-            if (newButtons != null)
-            {
-                newButtons = newButtons.Cast<ApplicationBarIconButton>().ToList();
-            }
+            //TODO: Fix this
+            //ApplicationBar bar = d as ApplicationBar;
+            //var newButtons = (e.NewValue as IEnumerable);
+            //if (newButtons != null)
+            //{
+            //    newButtons = newButtons.Cast<ApplicationBarIconButton>().ToList();
+            //}
 
-            bar.UpdateItemsSource(newButtons as List<ApplicationBarIconButton>, (FlowDirection)e.NewValue);
+            //bar.UpdateItemsSource(newButtons as List<ApplicationBarIconButton>, (FlowDirection)e.NewValue);
         }
 
         private void UpdateItemsSource(List<ApplicationBarIconButton> buttons, FlowDirection flowDirection)
         {
             try
             {
-                if (buttons != null)
+                if (buttons != null || buttons.Count == 0)
                 {
-                    if (buttons.Count > 0)
-                    {
                         if (flowDirection == FlowDirection.RightToLeft)
                             buttons.Reverse();
 
@@ -78,7 +77,6 @@ namespace SuiteValue.UI.WP8.Controls
                         }
 
                         Buttons.Attach(DataContext, SysAppBar);
-                    }
                 }
                 else
                 {
@@ -94,32 +92,43 @@ namespace SuiteValue.UI.WP8.Controls
         }
 
 
-        public object MenuSource
+        public IEnumerable<AppBarData> MenuSource
         {
-            get { return (object)GetValue(MenuSourceProperty); }
+            get { return (IEnumerable<AppBarData>)GetValue(MenuSourceProperty); }
             set { SetValue(MenuSourceProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for MenuSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty MenuSourceProperty =
-            DependencyProperty.Register("MenuSource", typeof(object), typeof(ApplicationBar), new PropertyMetadata(null, MenuSourceChanged));
+            DependencyProperty.Register("MenuSource", typeof(IEnumerable<AppBarData>), typeof(ApplicationBar), new PropertyMetadata(null, MenuSourceChanged));
 
         private static void MenuSourceChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            ApplicationBar bar = d as ApplicationBar;
-            if (e.NewValue != null && e.NewValue is IEnumerable)
+            if (e.NewValue == null) return;
+            if (!(e.NewValue is IEnumerable<AppBarData>))
             {
-                var newMenuItems = (e.NewValue as IEnumerable).Cast<ApplicationBarMenuItem>().ToList();
-                if (newMenuItems.Count > 0)
+                throw new Exception("ItemsSource is now allowing only AppBarData");
+            }
+
+            var bar = d as ApplicationBar;
+
+            var newMenuItems = (e.NewValue as IEnumerable<AppBarData>).Select(x =>
+            {
+                var b = new ApplicationBarMenuItem();
+                b.Adapt(x);
+                return b;
+            }).ToList();
+
+
+            if (newMenuItems.Count != 0)
+            {
+                bar.MenuItems.Dettach(bar.SysAppBar);
+                bar.MenuItems.Clear();
+                foreach (ApplicationBarMenuItem item in newMenuItems)
                 {
-                    bar.MenuItems.Dettach(bar.SysAppBar);
-                    bar.MenuItems.Clear();
-                    foreach (ApplicationBarMenuItem item in newMenuItems)
-                    {
-                        bar.MenuItems.Add(item);
-                    }
-                    bar.MenuItems.Attach(bar.DataContext, bar.SysAppBar);
+                    bar.MenuItems.Add(item);
                 }
+                bar.MenuItems.Attach(bar.DataContext, bar.SysAppBar);
             }
             else
             {
@@ -130,25 +139,33 @@ namespace SuiteValue.UI.WP8.Controls
         }
 
 
-        public object ItemsSource
+        public IEnumerable<AppBarData> ItemsSource
         {
-            get { return (object)GetValue(ItemsSourceProperty); }
+            get { return (IEnumerable<AppBarData>)GetValue(ItemsSourceProperty); }
             set { SetValue(ItemsSourceProperty, value); }
         }
 
         // Using a DependencyProperty as the backing store for ItemsSource.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty ItemsSourceProperty =
-            DependencyProperty.Register("ItemsSource", typeof(object), typeof(ApplicationBar), new PropertyMetadata(null, ItemsSourceChangedCallback));
+            DependencyProperty.Register("ItemsSource", typeof(IEnumerable<AppBarData>), typeof(ApplicationBar), new PropertyMetadata(null, ItemsSourceChangedCallback));
 
         private static void ItemsSourceChangedCallback(DependencyObject d, DependencyPropertyChangedEventArgs e)
         {
-            var bar = d as ApplicationBar;
-            var newButtons = (e.NewValue as IEnumerable);
-            if (newButtons != null)
+            if (e.NewValue == null) return;
+            if (!(e.NewValue is IEnumerable<AppBarData>))
             {
-                newButtons = newButtons.Cast<ApplicationBarIconButton>().ToList();
+                throw new Exception("ItemsSource is now allowing only AppBarData");    
             }
-            bar.UpdateItemsSource(newButtons as List<ApplicationBarIconButton>, bar.FlowDirection);
+            
+            var bar = d as ApplicationBar;
+                                                                            
+            var newButtons = (e.NewValue as IEnumerable<AppBarData>).Select(x =>
+            {
+                var b = new ApplicationBarIconButton();
+                b.Adapt(x);
+                return b;
+            }).ToList();
+            bar.UpdateItemsSource(newButtons, bar.FlowDirection);
         }
 
         #region DataContext Property

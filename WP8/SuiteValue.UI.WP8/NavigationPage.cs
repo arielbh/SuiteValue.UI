@@ -74,12 +74,22 @@ namespace SuiteValue.UI.WP8
                 newViewModel.RequestNavigateBack += ViewModel_RequestNavigateBack;
                 newViewModel.RequestNavigateBackTo += newViewModel_RequestNavigateBackTo;
                 newViewModel.RequestUnregister += ViewModel_RequestUnregister;
+                if (newViewModel.SupportOrientation)
+                {
+                    OrientationChanged += NavigationPage_OrientationChanged;
+                }
                 newViewModel.RegisteredForNavigation = true;
+                
                 if (newViewModel is IAsyncViewModel)
                 {
                     RegisterProgressBar(newViewModel as IAsyncViewModel);
                 }
             }
+        }
+
+        void NavigationPage_OrientationChanged(object sender, OrientationChangedEventArgs e)
+        {
+            (ViewModel as INavigationViewModel).OrientationChanged(e.Orientation);
         }
 
         void ViewModel_RequestUnregister(object sender, EventArgs e)
@@ -95,7 +105,7 @@ namespace SuiteValue.UI.WP8
                 oldViewModel.RequestNavigateBack -= ViewModel_RequestNavigateBack;
                 oldViewModel.RequestNavigateBackTo -= newViewModel_RequestNavigateBackTo;
                 oldViewModel.RequestUnregister -= ViewModel_RequestUnregister;
-
+                OrientationChanged -= NavigationPage_OrientationChanged;
                 oldViewModel.RegisteredForNavigation = false;
 
                 if (oldViewModel is IAsyncViewModel)

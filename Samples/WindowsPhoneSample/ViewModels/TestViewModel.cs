@@ -84,6 +84,7 @@ namespace WindowsPhoneSample.ViewModels
                                                          //vm.Payload = this;
                                                          //var result = await NavigateAndWait<Test2ViewModel>(vm);
                                                          //Navigate(new TestValidationViewModel());
+                                                         //Navigate(new TestAppBarViewModel());
                                                          Navigate(new TestLongListViewModel());
                                                      }));
             }

@@ -31,7 +31,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeLight.Prism.Silverlight
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeLight.Controls.Silverlight", "Silverlight\CodeLight.Controls.Silverlight\CodeLight.Controls.Silverlight.csproj", "{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeLight.Prism.Desktop", "Desktop\CodeLight.Prism.Desktop\CodeLight.Prism.Desktop.csproj", "{4B8AC4E0-D6E0-4F25-827A-B112744FE8E0}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuiteValue.UI.WPF.Prism", "Desktop\CodeLight.Prism.Desktop\SuiteValue.UI.WPF.Prism.csproj", "{4B8AC4E0-D6E0-4F25-827A-B112744FE8E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuiteValue.UI.MVVM", "Portable\SuiteValue.UI.MVVM\SuiteValue.UI.MVVM.csproj", "{8296C4DA-396C-498F-AB68-ECB6F6C48029}"
 EndProject
@@ -45,48 +45,54 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTester", "Samples\WpfTes
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsPhoneSample", "Samples\WindowsPhoneSample\WindowsPhoneSample.csproj", "{592BB043-F6E3-4DB4-8CEA-C619C19E4BEC}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuiteValue.UI.WPF", "Desktop\SuiteValue.UI.WPF\SuiteValue.UI.WPF.csproj", "{6B4EC717-C3E3-45C6-B5D3-7BF206577767}"
+EndProject
 Global
 	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 10
+		SccNumberOfProjects = 11
 		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs.codevalue.net/tfs/defaultcollection
-		SccProjectUniqueName0 = Desktop\\CodeLight.Prism.Desktop\\CodeLight.Prism.Desktop.csproj
+		SccTeamFoundationServer = https://tfs11.codevalue.net/tfs/defaultcollection
+		SccProjectUniqueName0 = Portable\\SuiteValue.UI.MVVM\\SuiteValue.UI.MVVM.csproj
 		SccProjectTopLevelParentUniqueName0 = SuiteValue.UI.sln
-		SccProjectName0 = Desktop/CodeLight.Prism.Desktop
-		SccLocalPath0 = Desktop\\CodeLight.Prism.Desktop
-		SccProjectUniqueName1 = Portable\\SuiteValue.UI.MVVM\\SuiteValue.UI.MVVM.csproj
+		SccProjectName0 = Portable/SuiteValue.UI.MVVM
+		SccLocalPath0 = Portable\\SuiteValue.UI.MVVM
+		SccProjectUniqueName1 = Desktop\\CodeLight.Mvvm.Desktop\\CodeLight.Mvvm.Desktop.csproj
 		SccProjectTopLevelParentUniqueName1 = SuiteValue.UI.sln
-		SccProjectName1 = Portable/SuiteValue.UI.MVVM
-		SccLocalPath1 = Portable\\SuiteValue.UI.MVVM
-		SccProjectUniqueName2 = Silverlight\\CodeLight.Controls.Silverlight\\CodeLight.Controls.Silverlight.csproj
+		SccProjectName1 = Desktop/CodeLight.Mvvm.Desktop
+		SccLocalPath1 = Desktop\\CodeLight.Mvvm.Desktop
+		SccProjectUniqueName2 = WP8\\SuiteValue.UI.WP8\\SuiteValue.UI.WP8.csproj
 		SccProjectTopLevelParentUniqueName2 = SuiteValue.UI.sln
-		SccProjectName2 = Silverlight/CodeLight.Controls.Silverlight
-		SccLocalPath2 = Silverlight\\CodeLight.Controls.Silverlight
-		SccProjectUniqueName3 = WP8\\SuiteValue.UI.WP8\\SuiteValue.UI.WP8.csproj
+		SccProjectName2 = WP8/SuiteValue.UI.WP8
+		SccLocalPath2 = WP8\\SuiteValue.UI.WP8
+		SccProjectUniqueName3 = Samples\\WindowsPhoneSample\\WindowsPhoneSample.csproj
 		SccProjectTopLevelParentUniqueName3 = SuiteValue.UI.sln
-		SccProjectName3 = WP8/SuiteValue.UI.WP8
-		SccLocalPath3 = WP8\\SuiteValue.UI.WP8
-		SccProjectUniqueName4 = Samples\\WindowsPhoneSample\\WindowsPhoneSample.csproj
+		SccProjectName3 = Samples/WindowsPhoneSample
+		SccLocalPath3 = Samples\\WindowsPhoneSample
+		SccProjectUniqueName4 = Silverlight\\CodeLight.Mvvm.Silverlight\\CodeLight.Mvvm.Silverlight.csproj
 		SccProjectTopLevelParentUniqueName4 = SuiteValue.UI.sln
-		SccProjectName4 = Samples/WindowsPhoneSample
-		SccLocalPath4 = Samples\\WindowsPhoneSample
-		SccProjectUniqueName5 = Desktop\\CodeLight.Mvvm.Desktop\\CodeLight.Mvvm.Desktop.csproj
+		SccProjectName4 = Silverlight/CodeLight.Mvvm.Silverlight
+		SccLocalPath4 = Silverlight\\CodeLight.Mvvm.Silverlight
+		SccProjectUniqueName5 = Silverlight\\CodeLight.Prism.Silverlight\\CodeLight.Prism.Silverlight.csproj
 		SccProjectTopLevelParentUniqueName5 = SuiteValue.UI.sln
-		SccProjectName5 = Desktop/CodeLight.Mvvm.Desktop
-		SccLocalPath5 = Desktop\\CodeLight.Mvvm.Desktop
-		SccProjectUniqueName6 = Silverlight\\CodeLight.Mvvm.Silverlight\\CodeLight.Mvvm.Silverlight.csproj
+		SccProjectName5 = Silverlight/CodeLight.Prism.Silverlight
+		SccLocalPath5 = Silverlight\\CodeLight.Prism.Silverlight
+		SccProjectUniqueName6 = Silverlight\\CodeLight.Controls.Silverlight\\CodeLight.Controls.Silverlight.csproj
 		SccProjectTopLevelParentUniqueName6 = SuiteValue.UI.sln
-		SccProjectName6 = Silverlight/CodeLight.Mvvm.Silverlight
-		SccLocalPath6 = Silverlight\\CodeLight.Mvvm.Silverlight
-		SccProjectUniqueName7 = Silverlight\\CodeLight.Prism.Silverlight\\CodeLight.Prism.Silverlight.csproj
+		SccProjectName6 = Silverlight/CodeLight.Controls.Silverlight
+		SccLocalPath6 = Silverlight\\CodeLight.Controls.Silverlight
+		SccProjectUniqueName7 = Samples\\WpfTester\\WpfTester.csproj
 		SccProjectTopLevelParentUniqueName7 = SuiteValue.UI.sln
-		SccProjectName7 = Silverlight/CodeLight.Prism.Silverlight
-		SccLocalPath7 = Silverlight\\CodeLight.Prism.Silverlight
-		SccProjectUniqueName8 = Samples\\WpfTester\\WpfTester.csproj
-		SccProjectTopLevelParentUniqueName8 = SuiteValue.UI.sln
-		SccProjectName8 = Samples/WpfTester
-		SccLocalPath8 = Samples\\WpfTester
-		SccLocalPath9 = .
+		SccProjectName7 = Samples/WpfTester
+		SccLocalPath7 = Samples\\WpfTester
+		SccLocalPath8 = .
+		SccProjectUniqueName9 = Desktop\\SuiteValue.UI.WPF\\SuiteValue.UI.WPF.csproj
+		SccProjectTopLevelParentUniqueName9 = SuiteValue.UI.sln
+		SccProjectName9 = Desktop/SuiteValue.UI.WPF
+		SccLocalPath9 = Desktop\\SuiteValue.UI.WPF
+		SccProjectUniqueName10 = Desktop\\CodeLight.Prism.Desktop\\SuiteValue.UI.WPF.Prism.csproj
+		SccProjectTopLevelParentUniqueName10 = SuiteValue.UI.sln
+		SccProjectName10 = Desktop/CodeLight.Prism.Desktop
+		SccLocalPath10 = Desktop\\CodeLight.Prism.Desktop
 	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -126,7 +132,6 @@ Global
 		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|Any CPU.Build.0 = Release|Any CPU
 		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|ARM.ActiveCfg = Release|Any CPU
 		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|x64.ActiveCfg = Release|Any CPU
 		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|x86.ActiveCfg = Release|Any CPU
 		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -140,7 +145,6 @@ Global
 		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Release|Any CPU.Build.0 = Release|Any CPU
 		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Release|ARM.ActiveCfg = Release|Any CPU
 		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Release|x64.ActiveCfg = Release|Any CPU
 		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Release|x86.ActiveCfg = Release|Any CPU
 		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
@@ -243,6 +247,20 @@ Global
 		{592BB043-F6E3-4DB4-8CEA-C619C19E4BEC}.Release|x86.ActiveCfg = Release|x86
 		{592BB043-F6E3-4DB4-8CEA-C619C19E4BEC}.Release|x86.Build.0 = Release|x86
 		{592BB043-F6E3-4DB4-8CEA-C619C19E4BEC}.Release|x86.Deploy.0 = Release|x86
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Debug|ARM.ActiveCfg = Debug|Any CPU
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Debug|x64.ActiveCfg = Debug|Any CPU
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Release|ARM.ActiveCfg = Release|Any CPU
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Release|Mixed Platforms.Build.0 = Release|Any CPU
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Release|x64.ActiveCfg = Release|Any CPU
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767}.Release|x86.ActiveCfg = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -250,6 +268,7 @@ Global
 	GlobalSection(NestedProjects) = preSolution
 		{A441E0B5-2276-4A49-A60B-0532F32A4361} = {28580D19-D682-4537-9F4F-905C3C788867}
 		{4B8AC4E0-D6E0-4F25-827A-B112744FE8E0} = {28580D19-D682-4537-9F4F-905C3C788867}
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767} = {28580D19-D682-4537-9F4F-905C3C788867}
 		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF} = {762BCFC2-643C-4889-B6A5-5AF0CC0969D0}
 		{EBEADECF-78CA-4CDB-819E-A5C153F88111} = {762BCFC2-643C-4889-B6A5-5AF0CC0969D0}
 		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42} = {762BCFC2-643C-4889-B6A5-5AF0CC0969D0}

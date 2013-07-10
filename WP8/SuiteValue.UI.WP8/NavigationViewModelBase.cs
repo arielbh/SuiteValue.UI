@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Threading.Tasks;
 using System.Windows.Navigation;
+using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
 
 namespace SuiteValue.UI.WP8
@@ -13,12 +14,14 @@ namespace SuiteValue.UI.WP8
         private string _viewHint;
         private bool _isInWaiting;
         private TaskCompletionSource<IDictionary<string, string>> _taskCompletionSource;
+        
         public event EventHandler<NavigationEventArgs> RequestNavigateTo;
         public event EventHandler<EventArgs> RequestNavigateBack;
         public event EventHandler<NavigationBackEventArgs> RequestNavigateBackTo;
         public event EventHandler<EventArgs> RequestUnregister;
 
         public bool RegisteredForNavigation { get; set; }
+        public bool SupportOrientation { get; protected set; }
 
         protected virtual void OnNavigatedTo(NavigationMode mode, IDictionary<string, string> parameter, bool isNavigationInitiator)
         {
@@ -48,6 +51,11 @@ namespace SuiteValue.UI.WP8
             {
                 RequestUnregister(this, new EventArgs());
             }
+        }
+
+        protected virtual void OrientationChanged(PageOrientation orientation)
+        {
+            
         }
 
         protected virtual void Navigate(string viewUri, IDictionary<string, string> parameters = null)
@@ -133,8 +141,6 @@ namespace SuiteValue.UI.WP8
             return _taskCompletionSource.Task;
         }
 
-        
-
 
         void INavigationViewModel.OnNavigatedTo(NavigationMode mode, IDictionary<string, string> parameter, bool isNavigationInitiator)
         {
@@ -183,6 +189,11 @@ namespace SuiteValue.UI.WP8
         Task<IDictionary<string, string>> INavigator.NavigateAndWait<T>(T viewModel, IDictionary<string, string> parameters) 
         {
             return NavigateAndWait(viewModel, parameters);
+        }
+
+        void INavigationViewModel.OrientationChanged(PageOrientation orientation)
+        {
+            OrientationChanged(orientation);
         }
 
         public bool KeepRegistrationsAlive { get; set; }

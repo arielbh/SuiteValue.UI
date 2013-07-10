@@ -68,7 +68,7 @@
                         <ContentControl x:Name="tempContent" Content="{TemplateBinding Content}" ContentTemplate="{TemplateBinding ContentTemplate}" />
                         <Image x:Name="ImageContent" Source="{TemplateBinding Source}" Stretch="{TemplateBinding Stretch}" Opacity="0" />
                         <Image x:Name="AnnotateContent" Margin="{TemplateBinding AnnotationMargin}" Stretch="Fill" Source="{TemplateBinding AnnotationSource}"
-                               Visibility="{TemplateBinding ShowAnnotation}" Width="{TemplateBinding AnnotationWidth}" Height="{TemplateBinding AnnotationWidth}" HorizontalAlignment="Right" VerticalAlignment="Top"/>
+                               Visibility="{TemplateBinding ShowAnnotation}" Width="{TemplateBinding AnnotationWidth}" Height="{TemplateBinding AnnotationWidth}" HorizontalAlignment="{TemplateBinding AnnotationHorizontalAlignment}" VerticalAlignment="{TemplateBinding AnnotationVerticalAlignment}"/>
                     </Grid>
                 </ControlTemplate>
             </Setter.Value>

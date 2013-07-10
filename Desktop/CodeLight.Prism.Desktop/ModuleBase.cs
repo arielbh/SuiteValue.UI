@@ -1,14 +1,11 @@
 ﻿using System;
 using System.Diagnostics;
-using System.IO;
 using System.Reflection;
 using System.Runtime.CompilerServices;
 using System.Windows;
-using System.Windows.Markup;
-using System.Windows.Resources;
 using Microsoft.Practices.Prism.Modularity;
 
-namespace CodeValue.CodeLight.Prism
+namespace SuiteValue.UI.WPF.Prism
 {
     public abstract class ModuleBase : IModule
     {

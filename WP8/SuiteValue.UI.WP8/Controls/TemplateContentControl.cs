@@ -18,7 +18,7 @@ namespace SuiteValue.UI.WP8.Controls
                 ContentTemplate = null;
                 return;
             }
-            if (ContentTemplate != null) return;
+            if (ContentTemplate != null && !ForceTemplateChange) return;
 
             if (ContentTemplateSelector != null)
             {
@@ -48,7 +48,34 @@ namespace SuiteValue.UI.WP8.Controls
 
         // Using a DependencyProperty as the backing store for Suffix.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty SuffixProperty =
-            DependencyProperty.Register("Suffix", typeof(string), typeof(TemplateContentControl), new PropertyMetadata(string.Empty));
+            DependencyProperty.Register("Suffix", typeof(string), typeof(TemplateContentControl), new PropertyMetadata(string.Empty, SuffixPropertyChanged));
+
+        private static void SuffixPropertyChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+            (d as TemplateContentControl).UpdateWithSuffix();
+        }
+
+        private void UpdateWithSuffix()
+        {
+            if (Content != null)
+            {
+                var key = GetKey(Content);
+                ContentTemplate = (DataTemplate)Application.Current.Resources[key];
+            }
+        }
+
+
+
+        public bool ForceTemplateChange
+        {
+            get { return (bool)GetValue(ForceTemplateChangeProperty); }
+            set { SetValue(ForceTemplateChangeProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ForceTemplateChange.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ForceTemplateChangeProperty =
+            DependencyProperty.Register("ForceTemplateChange", typeof(bool), typeof(TemplateContentControl), new PropertyMetadata(false));
+
 
 
 

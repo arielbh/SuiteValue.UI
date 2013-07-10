@@ -1,7 +1,6 @@
-﻿using System.Collections.Generic;
-using System.Resources;
+﻿using System.Resources;
 
-namespace CodeValue.CodeLight.Prism.Localization
+namespace SuiteValue.UI.WPF.Prism.Localization
 {
     /// <summary>
     /// Backend service for managing ResourceManagers and their resources

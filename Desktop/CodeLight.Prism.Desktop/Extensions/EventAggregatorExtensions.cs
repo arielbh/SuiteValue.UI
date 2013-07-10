@@ -1,7 +1,7 @@
 using System;
 using Microsoft.Practices.Prism.Events;
 
-namespace CodeValue.CodeLight.Prism.Extensions
+namespace SuiteValue.UI.WPF.Prism.Extensions
 {
     public static class EventAggregatorExtensions
     {

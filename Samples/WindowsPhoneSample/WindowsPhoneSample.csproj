@@ -109,6 +109,7 @@
     </Compile>
     <Compile Include="ViewModels\PartViewModel.cs" />
     <Compile Include="ViewModels\Test2ViewModel.cs" />
+    <Compile Include="ViewModels\TestAppBarViewModel.cs" />
     <Compile Include="ViewModels\TestLongListViewModel.cs" />
     <Compile Include="ViewModels\TestValidationViewModel.cs" />
     <Compile Include="ViewModels\TestViewModel.cs" />
@@ -123,6 +124,9 @@
     </Compile>
     <Compile Include="Views\Test2View.xaml.cs">
       <DependentUpon>Test2View.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="Views\TestAppBarView.xaml.cs">
+      <DependentUpon>TestAppBarView.xaml</DependentUpon>
     </Compile>
     <Compile Include="Views\TestLongListView.xaml.cs">
       <DependentUpon>TestLongListView.xaml</DependentUpon>
@@ -156,6 +160,10 @@
       <SubType>Designer</SubType>
     </Page>
     <Page Include="Views\Test2View.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="Views\TestAppBarView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>

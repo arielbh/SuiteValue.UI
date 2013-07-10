@@ -47,13 +47,13 @@
         <controls:TemplateContentControl Content="{Binding PartViewModel}" Grid.Row="2"  />
     </Grid>
 
-    <controls:PhoneApplicationPage.ApplicationBar>
+    <!--<controls:PhoneApplicationPage.ApplicationBar>
         <controls:ApplicationBar IsVisible="True" Mode="Default">
             <controls:ApplicationBarIconButton IconUri="/Assets/feature.camera.png" Text="camera" IsEnabled="False" />
             <controls:ApplicationBarIconButton IconUri="/Assets/feature.email.png" Text="email" IsVisible="{Binding EmailVisibility}" />
             <controls:ApplicationBarIconButton IconUri="/Assets/feature.phone.png" Text="phone" IsVisible="{Binding PhoneVisibility}" />
             <controls:ApplicationBarIconButton IconUri="/Assets/feature.search.png" Text="search" IsVisible="{Binding SearchVisibility}" />
         </controls:ApplicationBar>
-    </controls:PhoneApplicationPage.ApplicationBar>
+    </controls:PhoneApplicationPage.ApplicationBar>-->
 
 </wp8:NavigationPage>

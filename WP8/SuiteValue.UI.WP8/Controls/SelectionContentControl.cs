@@ -36,7 +36,15 @@ namespace SuiteValue.UI.WP8.Controls
                     expression.UpdateSource();
                 }
             }
-            TappedItem = item;
+            _SelfUpdate = true;
+            try
+            {
+                TappedItem = item;
+            }
+            finally
+            {
+                _SelfUpdate = false;
+            }
             Selected(!IsSelected);
         }
 
@@ -49,9 +57,21 @@ namespace SuiteValue.UI.WP8.Controls
                 ContentTemplate = null;
                 return;
             }
-            if (SelectedTemplate != null) return;
-            var key = GetKey(newContent);
-            SelectedTemplate = (DataTemplate)Application.Current.Resources[key];
+
+            if (SelectedTemplate == null)
+            {
+                var key = GetKey(newContent);
+                SelectedTemplate = (DataTemplate) Application.Current.Resources[key];
+                if (SelectedTemplate == null) // No SelectedTemplate to be find
+                {
+                    SelectedTemplate = ContentTemplate;
+                }
+            }
+            if (newContent == TappedItem)
+            {
+                Selected(true);
+            }
+
         }
 
         private string GetKey(object newContent)
@@ -61,7 +81,7 @@ namespace SuiteValue.UI.WP8.Controls
 
         private void Register(DependencyObject dependencyObject, DependencyPropertyChangedEventArgs e)
         {
-            ToggleVisibility();
+            if (EnableVisibilityChangeInLongListSelector) ToggleVisibility();
             if (e.NewValue == SelectedTemplate) return;
             _UnSelectedTemplate = e.NewValue as DataTemplate;
             
@@ -87,6 +107,7 @@ namespace SuiteValue.UI.WP8.Controls
 
         public void Selected(bool newValue)
         {
+            if (_SelfUpdate) return;
             if (newValue)
             {
                 ContentTemplate = SelectedTemplate;
@@ -161,8 +182,35 @@ namespace SuiteValue.UI.WP8.Controls
 
         // Using a DependencyProperty as the backing store for TappedTappedItemObject.  This enables animation, styling, binding, etc...
         public static readonly DependencyProperty TappedItemProperty =
-            DependencyProperty.Register("TappedItem", typeof(object), typeof(SelectionContentControl), new PropertyMetadata(null));
+            DependencyProperty.Register("TappedItem", typeof(object), typeof(SelectionContentControl), new PropertyMetadata(null, TappedItemChanged));
+
+        private static void TappedItemChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)
+        {
+
+            if (e.NewValue != null)
+            {
+                if ((d as SelectionContentControl).Content == e.NewValue)
+                {
+                    (d as SelectionContentControl).Selected(true);
+
+                }
+            }
+        }
 
         private DependencyObject child;
+
+
+
+        public bool EnableVisibilityChangeInLongListSelector
+        {
+            get { return (bool)GetValue(EnableVisibilityChangeInLongListSelectorProperty); }
+            set { SetValue(EnableVisibilityChangeInLongListSelectorProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for EnableVisibilityChangeInLongListSelector.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty EnableVisibilityChangeInLongListSelectorProperty =
+            DependencyProperty.Register("EnableVisibilityChangeInLongListSelector", typeof(bool), typeof(SelectionContentControl), new PropertyMetadata(false));
+
+        private bool _SelfUpdate;
     }
 }

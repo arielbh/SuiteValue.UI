@@ -55,11 +55,11 @@
                 <RowDefinition Height="Auto" />
             </Grid.RowDefinitions>
             <controls:ExpanderRadio Target="{Binding ElementName=list}" Content="Click me" IsChecked="True"/>
-            <behaviors:LongListSelector Grid.Row="1" x:Name="list" ItemsSource="{Binding Employees}"  TappedItem="{Binding SelectedEmployee, Mode=TwoWay}">
+            <behaviors:LongListSelector Grid.Row="1" x:Name="list" ItemsSource="{Binding Employees}"  >
                 <behaviors:LongListSelector.ItemTemplate>
                     <DataTemplate>
                         <controls:SelectionContentControl HorizontalAlignment="Stretch" HorizontalContentAlignment="Stretch" VerticalAlignment="Stretch" VerticalContentAlignment="Stretch"
-                    Content="{Binding}"  >
+                    Content="{Binding}"  TappedItem="{Binding DataContext.SelectedEmployee, Mode=TwoWay, ElementName=list}">
                             <controls:SelectionContentControl.ContentTemplate>
                                 <DataTemplate>
                                     <Border x:Name="border" Background="RoyalBlue" Margin="0,30,0,0">
@@ -69,7 +69,7 @@
                             </controls:SelectionContentControl.ContentTemplate>
                             <controls:SelectionContentControl.SelectedTemplate>
                                 <DataTemplate>
-                                    <Border x:Name="border" Background="White">
+                                    <Border x:Name="border" Background="Red">
                                         <TextBlock Text="{Binding Name}" Foreground="Black" Style="{StaticResource PhoneTextTitle2Style}"/>
                                     </Border>
                                 </DataTemplate>

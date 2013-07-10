@@ -5,7 +5,14 @@ using System.Windows;
 namespace SuiteValue.UI.WP8.Controls
 {    
     public class ApplicationBarIconButton : ApplicationBarMenuItem, Microsoft.Phone.Shell.IApplicationBarIconButton
-    {        
+    {
+
+        internal override void UpdateFromData()
+        {
+            base.UpdateFromData();
+            IconUri = _data.IconUri;
+        }
+
         #region Dependency Properties
 
         #region IconUri

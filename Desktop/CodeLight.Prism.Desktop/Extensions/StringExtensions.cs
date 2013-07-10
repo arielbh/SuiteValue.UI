@@ -3,7 +3,7 @@ using System.IO;
 using System.IO.Compression;
 using System.Text;
 
-namespace CodeValue.CodeLight.Prism.Extensions
+namespace SuiteValue.UI.WPF.Prism.Extensions
 {
     public static class StringCompressor
     {

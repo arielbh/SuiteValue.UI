@@ -68,6 +68,32 @@ namespace SuiteValue.UI.WP8.Controls
 
 
 
+        public HorizontalAlignment AnnotationHorizontalAlignment
+        {
+            get { return (HorizontalAlignment)GetValue(AnnotationHorizontalAlignmentProperty); }
+            set { SetValue(AnnotationHorizontalAlignmentProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AnnotationHorizontalAlignment.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty AnnotationHorizontalAlignmentProperty =
+            DependencyProperty.Register("AnnotationHorizontalAlignment", typeof(HorizontalAlignment), typeof(PlaceholderImage), new PropertyMetadata(HorizontalAlignment.Right));
+
+
+
+        public VerticalAlignment AnnotationVerticalAlignment
+        {
+            get { return (VerticalAlignment)GetValue(AnnotationVerticalAlignmentProperty); }
+            set { SetValue(AnnotationVerticalAlignmentProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for AnnotationVerticalAlignment.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty AnnotationVerticalAlignmentProperty =
+            DependencyProperty.Register("AnnotationVerticalAlignment", typeof(VerticalAlignment), typeof(PlaceholderImage), new PropertyMetadata(VerticalAlignment.Top));
+
+
+
+
+
 
 
         public PlaceholderImage()

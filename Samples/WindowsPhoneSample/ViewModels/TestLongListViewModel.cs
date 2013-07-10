@@ -9,11 +9,12 @@ namespace WindowsPhoneSample.ViewModels
         {
             Employees = new Employee[]
             {
-                new Employee {Name = "Ariel", IsSelected = true},
+                new Employee {Name = "Ariel", },
                 new Employee {Name = "Efrat"},
-                new Employee {Name = "Margol"},
+                new Employee {Name = "Margol", IsSelected = true},
                 new Employee {Name = "Raz"},
             };
+            SelectedEmployee = Employees[3];
         }
         private Employee[] _employees;
 

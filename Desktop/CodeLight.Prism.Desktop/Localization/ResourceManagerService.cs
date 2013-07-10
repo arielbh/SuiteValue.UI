@@ -1,12 +1,11 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Globalization;
-using System.Linq;
 using System.Resources;
 using System.Threading;
 using Microsoft.Practices.Prism.Events;
 
-namespace CodeValue.CodeLight.Prism.Localization
+namespace SuiteValue.UI.WPF.Prism.Localization
 {
     public class ResourceManagerService : IResourceManagerService
     {
