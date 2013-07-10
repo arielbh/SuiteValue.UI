@@ -142,6 +142,7 @@ namespace WindowsPhoneSample
 
             // Ensure we don't initialize again
             phoneApplicationInitialized = true;
+            RootFrame.UriMapper = new Mapper();
         }
 
         // Do not add any additional code to this method
@@ -235,6 +236,15 @@ namespace WindowsPhoneSample
 
                 throw;
             }
+        }
+    }
+
+
+    public class Mapper : UriMapperBase
+    {
+        public override Uri MapUri(Uri uri)
+        {
+            return uri;
         }
     }
 }

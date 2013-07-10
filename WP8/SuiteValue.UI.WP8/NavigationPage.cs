@@ -126,6 +126,15 @@ namespace SuiteValue.UI.WP8
             foreach (var backStack in backStackList)
             {
                 var uri = backStack.Source.ToString();
+                var rootFrame = Application.Current.RootVisual as Frame;
+                if (rootFrame != null)
+                {
+                    if (rootFrame.UriMapper != null)
+                    {
+                        uri = rootFrame.UriMapper.MapUri(backStack.Source).ToString();
+                    }
+                }
+                
                 if (uri.Contains(e.ViewModel.ViewHint))
                 {
                     target = backStack;

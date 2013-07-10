@@ -37,8 +37,8 @@ namespace WindowsPhoneSample.ViewModels
                                                      () =>
                                                      {
                                                          State = "Really";
-                                                         NavigateBack();
-                                                         //NavigateBackTo(Payload, new Dictionary<string, string>() {{"Test", "Test"}});
+//                                                         NavigateBack();
+                                                         NavigateBackTo(Payload, new Dictionary<string, string>() {{"Test", "Test"}});
 
                                                          //var vm = new Test3ViewModel();
                                                          //vm.State = "YoYo";

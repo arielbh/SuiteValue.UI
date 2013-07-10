@@ -39,7 +39,7 @@ namespace SuiteValue.UI.WP8.Controls
             _SelfUpdate = true;
             try
             {
-                TappedItem = item;
+            TappedItem = item;
             }
             finally
             {
@@ -54,18 +54,18 @@ namespace SuiteValue.UI.WP8.Controls
             if (newContent is UIElement) return;
             if (newContent == null)
             {
-                ContentTemplate = null;
+                SelectedTemplate = null;
                 return;
             }
 
             if (SelectedTemplate == null)
             {
-                var key = GetKey(newContent);
+            var key = GetKey(newContent);
                 SelectedTemplate = (DataTemplate) Application.Current.Resources[key];
                 if (SelectedTemplate == null) // No SelectedTemplate to be find
                 {
                     SelectedTemplate = ContentTemplate;
-                }
+        }
             }
             if (newContent == TappedItem)
             {
