@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Linq.Expressions;
 using System.ComponentModel;
+using System.Runtime.CompilerServices;
 using System.Runtime.Serialization;
 
 namespace SuiteValue.UI.MVVM
@@ -10,7 +11,7 @@ namespace SuiteValue.UI.MVVM
     {
         public event PropertyChangedEventHandler PropertyChanged;
 
-        protected void OnPropertyChanged(string propertyName)
+        protected void OnPropertyChanged([CallerMemberName] string propertyName = null)
         {
             if (PropertyChanged != null)
             {
