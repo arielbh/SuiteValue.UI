@@ -167,10 +167,24 @@
       <SubType>Designer</SubType>
     </Page>
   </ItemGroup>
-  <ItemGroup />
+  <ItemGroup>
+    <None Include="packages.config" />
+    <None Include="PostBuildScripts\BuildNewPackage-RanAutomatically.ps1" />
+    <None Include="PostBuildScripts\New-NuGetPackage.ps1" />
+    <None Include="PostBuildScripts\UploadPackage-RunManually.bat" />
+    <None Include="PostBuildScripts\UploadPackage-RunManually.ps1" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="PostBuildScripts\NuGet.exe" />
+  </ItemGroup>
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).$(TargetFrameworkVersion).Overrides.targets" />
   <Import Project="$(MSBuildExtensionsPath)\Microsoft\$(TargetFrameworkIdentifier)\$(TargetFrameworkVersion)\Microsoft.$(TargetFrameworkIdentifier).CSharp.targets" />
   <ProjectExtensions />
+  <PropertyGroup>
+    <PostBuildEvent>REM Create a NuGet package for this project and place the .nupkg file in the project's output directory.
+ECHO Building NuGet package in Post-Build event...
+PowerShell -NoProfile -ExecutionPolicy Bypass -Command "&amp; '$(ProjectDir)PostBuildScripts\BuildNewPackage-RanAutomatically.ps1' -ProjectFilePath '$(ProjectPath)' -OutputDirectory '$(TargetDir)' -Configuration '$(ConfigurationName)' -Platform '$(PlatformName)'"</PostBuildEvent>
+  </PropertyGroup>
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
   <Target Name="BeforeBuild">

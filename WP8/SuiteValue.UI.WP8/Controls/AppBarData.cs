@@ -80,5 +80,20 @@ namespace SuiteValue.UI.WP8.Controls
                 }
             }
         }
+
+        private string _key;
+
+        public string Key
+        {
+            get { return _key; }
+            set
+            {
+                if (value != _key)
+                {
+                    _key = value;
+                    OnPropertyChanged(() => Key);
+                }
+            }
+        }
     }
 }
