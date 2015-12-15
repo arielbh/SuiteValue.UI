@@ -1,13 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio 14
+VisualStudioVersion = 14.0.24720.0
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{28580D19-D682-4537-9F4F-905C3C788867}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{762BCFC2-643C-4889-B6A5-5AF0CC0969D0}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Portable", "Portable", "{61024129-4468-4B29-B285-447E895EFC80}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeLight.Mvvm.Desktop", "Desktop\CodeLight.Mvvm.Desktop\CodeLight.Mvvm.Desktop.csproj", "{A441E0B5-2276-4A49-A60B-0532F32A4361}"
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "3rdParty", "3rdParty", "{11D6DF4E-732A-4F5B-B40F-46E3A4F9C386}"
 EndProject
@@ -19,27 +17,23 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Desktop", "Desktop", "{AC1D
 		3rdParty\Desktop\System.Windows.Interactivity.dll = 3rdParty\Desktop\System.Windows.Interactivity.dll
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeLight.Mvvm.Silverlight", "Silverlight\CodeLight.Mvvm.Silverlight\CodeLight.Mvvm.Silverlight.csproj", "{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}"
-EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Silverlight", "Silverlight", "{82793A00-44A0-433F-ABBB-5B98E7B34FA7}"
 	ProjectSection(SolutionItems) = preProject
 		3rdParty\Silverlight\System.Windows.Interactivity.dll = 3rdParty\Silverlight\System.Windows.Interactivity.dll
 		3rdParty\Silverlight\System.Windows.Interactivity.xml = 3rdParty\Silverlight\System.Windows.Interactivity.xml
 	EndProjectSection
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeLight.Prism.Silverlight", "Silverlight\CodeLight.Prism.Silverlight\CodeLight.Prism.Silverlight.csproj", "{EBEADECF-78CA-4CDB-819E-A5C153F88111}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WP8", "WP8", "{F8F40BE2-0D6A-4691-9E01-BCD6E65AC77C}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeLight.Controls.Silverlight", "Silverlight\CodeLight.Controls.Silverlight\CodeLight.Controls.Silverlight.csproj", "{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{8E23166E-B1B0-4C14-9E21-3FC2E0131F97}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CodeLight.Mvvm.Desktop", "Desktop\CodeLight.Mvvm.Desktop\CodeLight.Mvvm.Desktop.csproj", "{A441E0B5-2276-4A49-A60B-0532F32A4361}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuiteValue.UI.WPF.Prism", "Desktop\CodeLight.Prism.Desktop\SuiteValue.UI.WPF.Prism.csproj", "{4B8AC4E0-D6E0-4F25-827A-B112744FE8E0}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuiteValue.UI.MVVM", "Portable\SuiteValue.UI.MVVM\SuiteValue.UI.MVVM.csproj", "{8296C4DA-396C-498F-AB68-ECB6F6C48029}"
 EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "WP8", "WP8", "{F8F40BE2-0D6A-4691-9E01-BCD6E65AC77C}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuiteValue.UI.WP8", "WP8\SuiteValue.UI.WP8\SuiteValue.UI.WP8.csproj", "{678254A4-0C28-444E-852F-3AF731E78B1F}"
-EndProject
-Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Samples", "Samples", "{8E23166E-B1B0-4C14-9E21-3FC2E0131F97}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WpfTester", "Samples\WpfTester\WpfTester.csproj", "{F83246F4-F6DF-404A-9B92-01BD87D7F7C4}"
 EndProject
@@ -48,52 +42,6 @@ EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SuiteValue.UI.WPF", "Desktop\SuiteValue.UI.WPF\SuiteValue.UI.WPF.csproj", "{6B4EC717-C3E3-45C6-B5D3-7BF206577767}"
 EndProject
 Global
-	GlobalSection(TeamFoundationVersionControl) = preSolution
-		SccNumberOfProjects = 11
-		SccEnterpriseProvider = {4CA58AB2-18FA-4F8D-95D4-32DDF27D184C}
-		SccTeamFoundationServer = https://tfs11.codevalue.net/tfs/defaultcollection
-		SccProjectUniqueName0 = Portable\\SuiteValue.UI.MVVM\\SuiteValue.UI.MVVM.csproj
-		SccProjectTopLevelParentUniqueName0 = SuiteValue.UI.sln
-		SccProjectName0 = Portable/SuiteValue.UI.MVVM
-		SccLocalPath0 = Portable\\SuiteValue.UI.MVVM
-		SccProjectUniqueName1 = WP8\\SuiteValue.UI.WP8\\SuiteValue.UI.WP8.csproj
-		SccProjectTopLevelParentUniqueName1 = SuiteValue.UI.sln
-		SccProjectName1 = WP8/SuiteValue.UI.WP8
-		SccLocalPath1 = WP8\\SuiteValue.UI.WP8
-		SccProjectUniqueName2 = Samples\\WindowsPhoneSample\\WindowsPhoneSample.csproj
-		SccProjectTopLevelParentUniqueName2 = SuiteValue.UI.sln
-		SccProjectName2 = Samples/WindowsPhoneSample
-		SccLocalPath2 = Samples\\WindowsPhoneSample
-		SccProjectUniqueName3 = Desktop\\CodeLight.Mvvm.Desktop\\CodeLight.Mvvm.Desktop.csproj
-		SccProjectTopLevelParentUniqueName3 = SuiteValue.UI.sln
-		SccProjectName3 = Desktop/CodeLight.Mvvm.Desktop
-		SccLocalPath3 = Desktop\\CodeLight.Mvvm.Desktop
-		SccProjectUniqueName4 = Desktop\\SuiteValue.UI.WPF\\SuiteValue.UI.WPF.csproj
-		SccProjectTopLevelParentUniqueName4 = SuiteValue.UI.sln
-		SccProjectName4 = Desktop/SuiteValue.UI.WPF
-		SccLocalPath4 = Desktop\\SuiteValue.UI.WPF
-		SccProjectUniqueName5 = Desktop\\CodeLight.Prism.Desktop\\SuiteValue.UI.WPF.Prism.csproj
-		SccProjectTopLevelParentUniqueName5 = SuiteValue.UI.sln
-		SccProjectName5 = Desktop/CodeLight.Prism.Desktop
-		SccLocalPath5 = Desktop\\CodeLight.Prism.Desktop
-		SccProjectUniqueName6 = Silverlight\\CodeLight.Mvvm.Silverlight\\CodeLight.Mvvm.Silverlight.csproj
-		SccProjectTopLevelParentUniqueName6 = SuiteValue.UI.sln
-		SccProjectName6 = Silverlight/CodeLight.Mvvm.Silverlight
-		SccLocalPath6 = Silverlight\\CodeLight.Mvvm.Silverlight
-		SccProjectUniqueName7 = Silverlight\\CodeLight.Prism.Silverlight\\CodeLight.Prism.Silverlight.csproj
-		SccProjectTopLevelParentUniqueName7 = SuiteValue.UI.sln
-		SccProjectName7 = Silverlight/CodeLight.Prism.Silverlight
-		SccLocalPath7 = Silverlight\\CodeLight.Prism.Silverlight
-		SccProjectUniqueName8 = Silverlight\\CodeLight.Controls.Silverlight\\CodeLight.Controls.Silverlight.csproj
-		SccProjectTopLevelParentUniqueName8 = SuiteValue.UI.sln
-		SccProjectName8 = Silverlight/CodeLight.Controls.Silverlight
-		SccLocalPath8 = Silverlight\\CodeLight.Controls.Silverlight
-		SccProjectUniqueName9 = Samples\\WpfTester\\WpfTester.csproj
-		SccProjectTopLevelParentUniqueName9 = SuiteValue.UI.sln
-		SccProjectName9 = Samples/WpfTester
-		SccLocalPath9 = Samples\\WpfTester
-		SccLocalPath10 = .
-	EndGlobalSection
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
 		Debug|ARM = Debug|ARM
@@ -121,46 +69,6 @@ Global
 		{A441E0B5-2276-4A49-A60B-0532F32A4361}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{A441E0B5-2276-4A49-A60B-0532F32A4361}.Release|x64.ActiveCfg = Release|Any CPU
 		{A441E0B5-2276-4A49-A60B-0532F32A4361}.Release|x86.ActiveCfg = Release|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|Any CPU.Build.0 = Release|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|ARM.ActiveCfg = Release|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|x64.ActiveCfg = Release|Any CPU
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF}.Release|x86.ActiveCfg = Release|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Release|Any CPU.Build.0 = Release|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Release|ARM.ActiveCfg = Release|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Release|x64.ActiveCfg = Release|Any CPU
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111}.Release|x86.ActiveCfg = Release|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Debug|ARM.ActiveCfg = Debug|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Debug|Mixed Platforms.ActiveCfg = Debug|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Debug|Mixed Platforms.Build.0 = Debug|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Debug|x64.ActiveCfg = Debug|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Release|Any CPU.Build.0 = Release|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Release|ARM.ActiveCfg = Release|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Release|Mixed Platforms.Build.0 = Release|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Release|x64.ActiveCfg = Release|Any CPU
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42}.Release|x86.ActiveCfg = Release|Any CPU
 		{4B8AC4E0-D6E0-4F25-827A-B112744FE8E0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{4B8AC4E0-D6E0-4F25-827A-B112744FE8E0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4B8AC4E0-D6E0-4F25-827A-B112744FE8E0}.Debug|ARM.ActiveCfg = Debug|Any CPU
@@ -266,17 +174,14 @@ Global
 		HideSolutionNode = FALSE
 	EndGlobalSection
 	GlobalSection(NestedProjects) = preSolution
-		{A441E0B5-2276-4A49-A60B-0532F32A4361} = {28580D19-D682-4537-9F4F-905C3C788867}
-		{4B8AC4E0-D6E0-4F25-827A-B112744FE8E0} = {28580D19-D682-4537-9F4F-905C3C788867}
-		{6B4EC717-C3E3-45C6-B5D3-7BF206577767} = {28580D19-D682-4537-9F4F-905C3C788867}
-		{658A92D9-0975-4C68-BFCA-A2C3C588CFFF} = {762BCFC2-643C-4889-B6A5-5AF0CC0969D0}
-		{EBEADECF-78CA-4CDB-819E-A5C153F88111} = {762BCFC2-643C-4889-B6A5-5AF0CC0969D0}
-		{00F2B9D8-C5F0-44B0-A14D-D830BD63CB42} = {762BCFC2-643C-4889-B6A5-5AF0CC0969D0}
-		{8296C4DA-396C-498F-AB68-ECB6F6C48029} = {61024129-4468-4B29-B285-447E895EFC80}
 		{AC1D443E-003A-47C1-81B5-876BAF1821BC} = {11D6DF4E-732A-4F5B-B40F-46E3A4F9C386}
 		{82793A00-44A0-433F-ABBB-5B98E7B34FA7} = {11D6DF4E-732A-4F5B-B40F-46E3A4F9C386}
+		{A441E0B5-2276-4A49-A60B-0532F32A4361} = {28580D19-D682-4537-9F4F-905C3C788867}
+		{4B8AC4E0-D6E0-4F25-827A-B112744FE8E0} = {28580D19-D682-4537-9F4F-905C3C788867}
+		{8296C4DA-396C-498F-AB68-ECB6F6C48029} = {61024129-4468-4B29-B285-447E895EFC80}
 		{678254A4-0C28-444E-852F-3AF731E78B1F} = {F8F40BE2-0D6A-4691-9E01-BCD6E65AC77C}
 		{F83246F4-F6DF-404A-9B92-01BD87D7F7C4} = {8E23166E-B1B0-4C14-9E21-3FC2E0131F97}
 		{592BB043-F6E3-4DB4-8CEA-C619C19E4BEC} = {8E23166E-B1B0-4C14-9E21-3FC2E0131F97}
+		{6B4EC717-C3E3-45C6-B5D3-7BF206577767} = {28580D19-D682-4537-9F4F-905C3C788867}
 	EndGlobalSection
 EndGlobal
