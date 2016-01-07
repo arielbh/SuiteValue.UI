@@ -27,6 +27,20 @@ namespace SuiteValue.UI.WPF.Behaviors
 
         }
 
+
+
+        public bool ShouldHide
+        {
+            get { return (bool)GetValue(ShouldHideProperty); }
+            set { SetValue(ShouldHideProperty, value); }
+        }
+
+        // Using a DependencyProperty as the backing store for ShouldHide.  This enables animation, styling, binding, etc...
+        public static readonly DependencyProperty ShouldHideProperty =
+            DependencyProperty.Register("ShouldHide", typeof(bool), typeof(CommandVisibilityBehavior), new PropertyMetadata(false));
+
+
+
         private void Register(object sender, EventArgs eventArgs)
         {
             if (AssociatedObject.Command != null)
@@ -46,7 +60,7 @@ namespace SuiteValue.UI.WPF.Behaviors
         {
             AssociatedObject.Visibility = canExecute
                           ? Visibility.Visible
-                          : Visibility.Collapsed;
+                          : ShouldHide? Visibility.Hidden : Visibility.Collapsed;
         }
 
 

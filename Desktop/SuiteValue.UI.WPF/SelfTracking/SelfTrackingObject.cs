@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Linq.Expressions;
+using System.Runtime.CompilerServices;
 using SuiteValue.UI.WPF.Validation;
 #if WINDOWS_PHONE
 using SuiteValue.UI.WP8.Validation;
@@ -28,18 +29,21 @@ namespace SuiteValue.UI.WPF.SelfTracking
 
         protected bool RaiseValidationsError { get; set; }
 
-        protected void SetValue(object value, string property)
+        protected void SetValue(object value, [CallerMemberName] string property = null)
         {
 
             if (!_data.ContainsKey(property))
             {
                 _data[property] = new Tuple<object, object>(value, null);
+                OnPropertyChanged(property);
                 return;
 
             }
             var current = _data[property];
+            if (current.Item1.Equals(value)) return;
             _data[property] = new Tuple<object, object>(current.Item1, value);
 
+            OnPropertyChanged(property);
             OnPropertyChanged(() => IsDirty);
 
             if (RaiseValidationsError)
@@ -63,7 +67,7 @@ namespace SuiteValue.UI.WPF.SelfTracking
             SetValue(value, GetPropertyNameFromExpression(property));
         }
 
-        protected object GetValue(string property)
+        protected object GetValue([CallerMemberName] string property = null)
         {
             if (!_data.ContainsKey(property))
             {
@@ -71,6 +75,11 @@ namespace SuiteValue.UI.WPF.SelfTracking
             }
             var tuple = _data[property];
             return tuple.Item2 ?? tuple.Item1;
+        }
+
+        protected T GetValue<T>([CallerMemberName] string property = null)
+        {
+            return GetValue(property) is T ? (T) GetValue(property) : default(T);
         }
 
         protected object GetValue<T>(Expression<Func<T>> property)
@@ -82,7 +91,7 @@ namespace SuiteValue.UI.WPF.SelfTracking
             return GetPreviousValue(GetPropertyNameFromExpression(property));
         }
 
-        protected object GetPreviousValue(string property)
+        protected object GetPreviousValue([CallerMemberName] string property = null)
         {
             if (!_data.ContainsKey(property))
             {
@@ -102,7 +111,7 @@ namespace SuiteValue.UI.WPF.SelfTracking
         }
 
 
-        public bool HasPreviousValue(string property)
+        public bool HasPreviousValue([CallerMemberName] string property = null)
         {
             var value = GetPreviousValue(property);
             return value != null;
@@ -139,7 +148,7 @@ namespace SuiteValue.UI.WPF.SelfTracking
 
         }
 
-        public bool IsDirty
+        public virtual bool IsDirty
         {
             get { return _data.Values.Any(t => t.Item2 != null); }
         }
