@@ -40,7 +40,14 @@ namespace SuiteValue.UI.WPF.SelfTracking
 
             }
             var current = _data[property];
-            if (current.Item1.Equals(value)) return;
+            if (current != null)
+            {
+                if (current.Item1 != null)
+                {
+                    if (current.Item1.Equals(value)) return;
+                }
+            }
+            
             _data[property] = new Tuple<object, object>(current.Item1, value);
 
             OnPropertyChanged(property);
